@@ -1,10 +1,16 @@
-//import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import styles from "./App.module.css";
+import { Input } from "../components/Input/Input";
+//import styles from "./App.module.css";
+import { useState } from 'react';
 
 
 function App() {
-  return
+  const [inputValue, setInputValue] = useState('');
+
+  return (
+    <div>
+      <Input value={inputValue} onChange={setInputValue} />
+    </div>
+  )
 }
 
 export default App

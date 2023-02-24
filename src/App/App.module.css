@@ -9,4 +9,13 @@
   padding-left: 16px;
   max-width: 800px;
   margin: 0 auto;
+  gap: 24px;
+}
+
+.buttonsAll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
 }

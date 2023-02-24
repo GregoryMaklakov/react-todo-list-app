@@ -5,14 +5,12 @@
   cursor: pointer;
   border-radius: 4px;
   box-shadow: 0 0 0 2px transparent;
+  padding: 0 0.5px;
+  position: relative;
 }
 
 .container:hover .checkboxLabel {
   border: 1px solid #292d32;
-}
-
-.container:focus {
-  box-shadow: 0 0 0 2px #d7dcff;
 }
 
 .checkboxInput {
@@ -21,9 +19,13 @@
   z-index: -1;
 }
 
+.container:focus-within {
+  box-shadow: 0px 0px 0px 2px #d7dcff;
+}
 .checkboxInput:checked + .checkboxLabel {
   background-color: #292d32;
   border: 1px solid #292d32;
+  box-shadow: 0px 0px 0px 2px transparent;
 }
 .checkboxInput:checked + .checkboxLabel .checkboxIcon {
   opacity: 1;
@@ -56,4 +58,8 @@
   font-size: 14px;
   line-height: 17px;
   color: #8a8e97;
+}
+
+.checkboxInput:checked + .checkboxLabel + .checkboxText {
+  color: #292d32;
 }

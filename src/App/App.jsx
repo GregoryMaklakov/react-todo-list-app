@@ -13,6 +13,7 @@ function App({ }) {
       <Input value={inputValue} onChange={setInputValue} />
       <br />
       <br />
+
       <div className={styles.buttonsAll}>
         <Checkbox checked={check} onChange={setCheck}>
           Done

@@ -4,6 +4,7 @@ import styles from "./Checkbox.module.css";
 import { Icon } from "../Icon";
 
 export const Checkbox = ({ children, checked, onChange }) => {
+
     return (
         <label className={clsx(styles.container)}>
             <input

@@ -1,7 +1,7 @@
-import { Input } from "../components/Input/Input";
+import { Input } from "../components/Input";
 import styles from "./App.module.css";
 import { useState } from "react";
-import { Checkbox } from "../components/Checkbox/Checkbox";
+import { Checkbox } from "../components/Checkbox";
 import { Button } from "../components/Button";
 
 function App({ }) {

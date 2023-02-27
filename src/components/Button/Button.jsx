@@ -26,7 +26,7 @@ export const Button = ({
             disabled={disebled}
         >
             {children}
-            {icon ? <Icon name={icon} className={styles.icon} /> : null}
+            {icon ? <icon2 name={icon} className={styles.icon} /> : null}
         </button>
     );
 };

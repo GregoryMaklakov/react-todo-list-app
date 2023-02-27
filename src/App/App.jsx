@@ -15,7 +15,7 @@ function App({ }) {
       <br />
 
       <div className={styles.buttonsAll}>
-        <Checkbox checked={check} onChange={setCheck} icon='IconCheckbox' variant='icon'>
+        <Checkbox checked={check} onChange={setCheck}>
           Done
         </Checkbox>
         <Button className={styles.buttonPrimary} variant="primary">

@@ -4,7 +4,7 @@ import styles from "./Checkbox.module.css";
 import { Icon } from "../Icon";
 import { ICON_TYPES } from "../Icon";
 
-export const Checkbox = ({ children, checked, onChange }) => {
+export const Checkbox = ({ children, checked, onChange, icon, variant }) => {
 
     return (
         <label className={clsx(styles.container)}>
@@ -13,10 +13,11 @@ export const Checkbox = ({ children, checked, onChange }) => {
                 checked={checked}
                 onChange={() => onChange(!checked)}
                 type="checkbox"
+                variant={variant}
             />
             <span className={styles.checkboxLabel}>
                 <span className={styles.checkboxIcon}>
-                    <Icon name='IconCheckbox' />
+                    <Icon name={icon} />
                 </span>
             </span>
             <span className={styles.checkboxText}>{children}</span>

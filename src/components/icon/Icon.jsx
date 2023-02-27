@@ -19,7 +19,7 @@ export const Icon = ({ className, size, fill, name }) => {
         case "IconCheckbox":
             return (
                 <svg
-                    className={clsx(className)}
+                    className={clsx(styles.iconCheckbox, className)}
                     width={size}
                     height={size}
                     viewBox="0 0 15 14"

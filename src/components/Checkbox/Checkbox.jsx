@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import styles from "./Checkbox.module.css";
 import { Icon } from "../Icon";
+import { ICON_TYPES } from "../Icon";
 
 export const Checkbox = ({ children, checked, onChange }) => {
 
@@ -27,5 +28,6 @@ Checkbox.propTypes = {
     children: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
+    icon: PropTypes.oneOf(ICON_TYPES),
 };
 

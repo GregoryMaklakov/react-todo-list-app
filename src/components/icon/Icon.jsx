@@ -12,7 +12,7 @@ export const ICON_TYPES = [
     "IconEdit",
 ];
 
-export const icon2 = ({ className, size, fill, name }) => {
+export const Icon = ({ className, size, fill, name }) => {
     switch (name) {
         default:
             return null;

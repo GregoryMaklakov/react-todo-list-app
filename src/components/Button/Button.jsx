@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import styles from "./Button.module.css";
-import { icon2 } from "../Icon";
+import { Icon } from "../Icon";
 import { ICON_TYPES } from "../Icon";
 
 export const Button = ({
@@ -26,7 +26,7 @@ export const Button = ({
             disabled={disebled}
         >
             {children}
-            {icon ? <icon2 name={icon} className={styles.icon} /> : null}
+            {icon ? <Icon name={icon} className={styles.icon} /> : null}
         </button>
     );
 };

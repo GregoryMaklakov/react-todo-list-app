@@ -18,7 +18,7 @@ export const Checkbox = ({ children, checked, onChange }) => {
                     <Icon name='IconCheckbox' />
                 </span>
             </span>
-            <span className={styles.checkboxText}>{children}</span>
+            {children && <span className={styles.checkboxText}>{children}</span>}
         </label>
     );
 };

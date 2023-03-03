@@ -16,23 +16,25 @@ export const Button = ({
     return (
         <button
             className={clsx(
+                className,
                 styles.button,
                 styles[`variant-${variant}`],
                 styles[`size-${size}`],
-                className
+                { [styles.hasIcon]: icon && variant !== "icon" }
             )}
             type={onClick ? "button" : "submit"}
             onClick={onClick}
             disabled={disebled}
         >
-            {children}
-            {icon ? <Icon name={icon} className={styles.icon} /> : null}
+            {!!icon && <Icon name={icon} />}
+            {/* {icon ? <Icon name={icon} className={styles.icon} /> : null} */}
+            {variant !== "icon" && <span>{children}</span>}
         </button>
     );
 };
 
 Button.propTypes = {
-    variant: PropTypes.oneOf(["primary", "text", "icon"]),
+    variant: PropTypes.oneOf(["primary", "text", "icon", "danger", "dashed"]),
     className: PropTypes.string,
     children: PropTypes.string,
     onClick: PropTypes.func,

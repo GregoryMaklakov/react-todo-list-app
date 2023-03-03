@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import { useState } from "react";
 import { Checkbox } from "../components/Checkbox";
 import { Button } from "../components/Button";
+import { Icon } from "../components/Icon";
 
 function App({ }) {
   const [inputValue, setInputValue] = useState("");
@@ -21,9 +22,18 @@ function App({ }) {
         <Button className={styles.buttonPrimary} variant="primary">
           Button
         </Button>
+        <Button className={styles.buttonDanger} variant="danger">
+          Button
+        </Button>
+
+        <Button className={styles.buttonDashed} variant="dashed">
+          Button
+        </Button>
+
         <Button className={styles.buttonText} variant="text">
           Add New Task
         </Button>
+
         <Button
           className={styles.buttonIcon}
           variant="icon"

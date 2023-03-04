@@ -1,21 +1,23 @@
-import { Input } from "../components/Input";
 import styles from "./App.module.css";
 import { useState } from "react";
-import { Checkbox } from "../components/Checkbox";
-import { Button } from "../components/Button";
-import { Icon } from "../components/Icon";
+import { Input, PopupDelete, Button, Checkbox, EditableButton, } from "../components";
+
+
 
 function App({ }) {
   const [inputValue, setInputValue] = useState("");
-  const [check, setCheck] = useState(false);
+  //const [check, setCheck] = useState(false);
+  const [newValue, setNewValue] = useState('');
+
+  const onSave = async () => {
+    return true;
+  }
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
     <div className={styles.container}>
       <Input value={inputValue} onChange={setInputValue} />
-      <br />
-      <br />
-
-      <div className={styles.buttonsAll}>
+      {/* <div className={styles.buttonsAll}>
         <Checkbox checked={check} onChange={setCheck}>
           Done
         </Checkbox>
@@ -26,7 +28,7 @@ function App({ }) {
           Button
         </Button>
 
-        <Button className={styles.buttonDashed} variant="dashed">
+        <Button className={styles.buttonDashed} variant="dashed" icon="IconAdd" fluid>
           Button
         </Button>
 
@@ -70,7 +72,15 @@ function App({ }) {
           icon="IconEdit"
           size="medium"
         ></Button>
-      </div>
+
+
+      </div> */}
+      <Button variant='primary' onClick={() => setIsPopupOpen(true)}>open</Button>
+
+
+      <EditableButton value={newValue} onChange={setNewValue} onSave={onSave} icon='IconAdd'>add new value</EditableButton>
+
+      {isPopupOpen && <PopupDelete></PopupDelete>}
     </div>
   );
 }

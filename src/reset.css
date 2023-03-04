@@ -69,3 +69,7 @@ h6 {
   font-weight: inherit;
   font-size: inherit;
 }
+
+.popup-open {
+  overflow-y: hidden;
+}

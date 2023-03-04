@@ -12,6 +12,7 @@ export const Button = ({
     disebled,
     size,
     icon,
+    fluid,
 }) => {
     return (
         <button
@@ -20,7 +21,10 @@ export const Button = ({
                 styles.button,
                 styles[`variant-${variant}`],
                 styles[`size-${size}`],
-                { [styles.hasIcon]: icon && variant !== "icon" }
+                {
+                    [styles.hasIcon]: icon && variant !== "icon",
+                    [styles.fluid]: fluid,
+                }
             )}
             type={onClick ? "button" : "submit"}
             onClick={onClick}
@@ -41,6 +45,7 @@ Button.propTypes = {
     disebled: PropTypes.bool,
     size: PropTypes.oneOf(["small", "medium", "large"]),
     icon: PropTypes.oneOf(ICON_TYPES),
+    fluid: PropTypes.bool,
 };
 
 Button.detaultProps = {

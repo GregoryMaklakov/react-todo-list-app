@@ -21,7 +21,12 @@
   line-height: 17px;
   color: #c4c4c4;
 }
-
+.large {
+  height: 40px;
+}
+.small {
+  height: 32px;
+}
 .input:hover {
   box-shadow: 0 0 0 1px #8a8e97;
 }

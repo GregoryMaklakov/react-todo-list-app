@@ -2,7 +2,7 @@ import clsx from "clsx";
 import PropTypes from "prop-types";
 import { Button } from "../Button";
 import styles from "./EditableButton.module.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ICON_TYPES } from "../Icon/Icon";
 import { Input } from '../Input';
 
@@ -14,6 +14,8 @@ export const EditableButton = ({
     value,
     onSave
 }) => {
+    const inputRef = useRef(null);
+
     const [isInputActive, setisInputActive] = useState(false);
     const onBlur = async () => {
         setisInputAvtine(false);
@@ -24,10 +26,16 @@ export const EditableButton = ({
         }
     };
 
+    useEffect(() => {
+        if (inputRef && isInputActive) {
+            inputRef.current.focus();
+        }
+    }, [isInputActive, inputRef])
     return (
         <div className={clsx(className)}>
             {isInputActive ? (
                 <Input
+                    ref={inputRef}
                     onBlur={onBlur}
                     value={value}
                     onChange={onChange}

@@ -1,0 +1,54 @@
+.cardTodo {
+  padding: 16px 24px;
+  background-color: #fff8d5;
+  width: 441px;
+  border-radius: 8px;
+  min-height: 147px;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cardBtn {
+  width: 24px;
+  height: 24px;
+}
+.title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #535559;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6a6e74;
+  margin-bottom: 16px;
+}
+
+.textChecked {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 16px;
+  color: #6a6e74;
+  text-decoration-line: line-through;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

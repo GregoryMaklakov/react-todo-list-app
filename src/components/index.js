@@ -6,3 +6,4 @@ export * from "./Input";
 export * from "./Popup";
 export * from "./PopupDelete";
 export * from "./EditableButton";
+export * from "./TodoCard";

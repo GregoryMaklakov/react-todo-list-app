@@ -1,23 +1,35 @@
 import styles from "./App.module.css";
-import { useState } from "react";
-import { Input, PopupDelete, Button, Checkbox, EditableButton, } from "../components";
+import { useState, useEffect } from "react";
+import {
+  Input,
+  PopupDelete,
+  Button,
+  Checkbox,
+  EditableButton,
+  TodoCard,
+} from "../components";
 
-
-
-function App({ }) {
+function App() {
   const [inputValue, setInputValue] = useState("");
-  //const [check, setCheck] = useState(false);
-  const [newValue, setNewValue] = useState('');
+  const [check, setCheck] = useState(false);
 
-  const onSave = async () => {
+  const [done, onDoneChange] = useState(false);
+
+  const [onDelete, setOnDelete] = useState(false);
+  const [onDeleted, setOnDeleted] = useState(true);
+
+  useEffect(() => {
+    return () => setOnDelete(false);
+  }, [onDeleted]);
+
+  const onSave = async (value) => {
     return true;
-  }
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  };
 
   return (
     <div className={styles.container}>
       <Input value={inputValue} onChange={setInputValue} />
-      {/* <div className={styles.buttonsAll}>
+      <div className={styles.buttonsAll}>
         <Checkbox checked={check} onChange={setCheck}>
           Done
         </Checkbox>
@@ -28,7 +40,12 @@ function App({ }) {
           Button
         </Button>
 
-        <Button className={styles.buttonDashed} variant="dashed" icon="IconAdd" fluid>
+        <Button
+          className={styles.buttonDashed}
+          variant="dashed"
+          icon="IconAdd"
+          fluid
+        >
           Button
         </Button>
 
@@ -72,15 +89,33 @@ function App({ }) {
           icon="IconEdit"
           size="medium"
         ></Button>
+      </div>
 
+      <EditableButton
+        onSave={onSave}
+        icon="IconAdd"
+      >
+        add new value
+      </EditableButton>
 
-      </div> */}
-      <Button variant='primary' onClick={() => setIsPopupOpen(true)}>open</Button>
+      {onDelete && (
+        <PopupDelete
+          onDeleted={() => setOnDeleted(!onDeleted)}
+          title="Do you really want to delete this task?"
+        />
+      )}
 
-
-      <EditableButton value={newValue} onChange={setNewValue} onSave={onSave} icon='IconAdd'>add new value</EditableButton>
-
-      {isPopupOpen && <PopupDelete></PopupDelete>}
+      {onDeleted && (
+        <TodoCard
+          title="Task title 1"
+          text="Maecenas libero quis laoreet natoque. Auctor magna urna ipsum amet et. Sem porttitor egestas turpis sem elementum nulla adipiscing mi pulvinar. Vitae sapien volutpat sit sed fames aenean sit. Sit sed adipiscing eget enim et."
+          done={done}
+          onDelete={() => setOnDelete(!onDelete)}
+          onEdit={() => undefined}
+          onDoneChange={onDoneChange}
+          tags={[]}
+        ></TodoCard>
+      )}
     </div>
   );
 }

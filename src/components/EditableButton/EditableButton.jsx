@@ -10,19 +10,18 @@ export const EditableButton = ({
     className,
     children,
     icon,
-    onChange,
-    value,
     onSave
 }) => {
     const inputRef = useRef(null);
 
-    const [isInputActive, setisInputActive] = useState(false);
+    const [isInputActive, setIsInputActive] = useState(false);
+    const [value, setValue] = useState('');
     const onBlur = async () => {
-        setisInputAvtine(false);
-        const ok = await onSave();
+        setIsInputActive(false);
+        const ok = await onSave(value);
         if (ok) {
-            setisInputAvtine(false);
-            onChange("");
+            setIsInputActive(false);
+            setValue("");
         }
     };
 
@@ -38,12 +37,12 @@ export const EditableButton = ({
                     ref={inputRef}
                     onBlur={onBlur}
                     value={value}
-                    onChange={onChange}
+                    onChange={setValue}
                     size="small"
                 ></Input>
             ) : (
                 <Button
-                    onClick={() => setisInputActive(true)}
+                    onClick={() => setIsInputActive(true)}
                     variant="dashed"
                     icon={icon}
                     fluid
@@ -59,7 +58,5 @@ EditableButton.propTypes = {
     className: PropTypes.string,
     children: PropTypes.string.isRequired,
     icon: PropTypes.oneOf(ICON_TYPES),
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
 };

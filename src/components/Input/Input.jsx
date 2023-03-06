@@ -27,7 +27,7 @@ Input.propTypes = {
     type: PropTypes.string,
     name: PropTypes.string,
     disabled: PropTypes.bool,
-    size: PropTypes.oneOf("small", "large"),
+    size: PropTypes.oneOf(["small", "large"]),
     onBlur: PropTypes.func,
 };
 Input.defaultProps = {

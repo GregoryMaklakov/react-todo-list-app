@@ -11,5 +11,12 @@
   background: rgba(43, 40, 34, 0.33);
 }
 .card {
-  background-color: #fff;
+  background: #ffffff;
+  box-shadow: 0px 2px 15px rgba(169, 173, 187, 0.15);
+  border-radius: 4px;
+  width: 320px;
+  min-height: 134px;
+  padding: 16px 16px 24px 16px;
+  display: flex;
+  flex-direction: column;
 }

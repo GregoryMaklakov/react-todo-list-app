@@ -7,6 +7,7 @@ import {
   Checkbox,
   EditableButton,
   TodoCard,
+  Tag,
 } from "../components";
 
 function App() {
@@ -91,10 +92,7 @@ function App() {
         ></Button>
       </div>
 
-      <EditableButton
-        onSave={onSave}
-        icon="IconAdd"
-      >
+      <EditableButton onSave={onSave} icon="IconAdd">
         add new value
       </EditableButton>
 
@@ -116,6 +114,17 @@ function App() {
           tags={[]}
         ></TodoCard>
       )}
+      <Tag
+        color="red"
+        isEditable
+        active
+        onSave={async () => true}
+        onEdit={() => undefined}
+        onClick={() => undefined}
+        onDelete={() => undefined}
+      >
+        Tag
+      </Tag>
     </div>
   );
 }

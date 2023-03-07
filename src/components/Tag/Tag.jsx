@@ -1,31 +1,73 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { useState, useRef, useEffect } from 'react'
+import { useEffect } from "react";
 import styles from "./Tag.module.css";
 import { ColorDot } from "../ColorDot";
+import { useEditable } from "../../hooks/useEditable";
+import { Button } from "../Button/";
+import { Input } from '../Input';
 
-export const Tag = ({ children, onClick, onSave, color, active, }) => {
-    const [value, setValue] = useState();
+export const Tag = ({
+    children,
+    onClick,
+    onSave,
+    color,
+    active,
+    onDelete,
+    isEditable,
+}) => {
+    const { inputRef, isInputActive, onBlur, onChange, value, setIsInputActive } =
+        useEditable({
+            onSave,
+        });
+
+    const renderEditableContent = () => {
+        if (isEditable && isInputActive) {
+            return (
+                <Input
+                    className={styles.input}
+                    ref={inputRef}
+                    onBlur={onBlur}
+                    value={value}
+                    onChange={onChange}
+                ></Input>
+            );
+        }
+        if (isEditable && !isInputActive) {
+            return (
+                <div className={styles.actions}>
+                    <Button
+                        className={styles.actionBtn}
+                        variant="icon"
+                        icon="IconEdit"
+                        onClick={() => setIsInputActive(true)}
+                    />
+                    <Button
+                        className={styles.actionBtn}
+                        variant="icon"
+                        icon="IconDelete"
+                        onClick={onDelete}
+                    />
+                </div>
+            );
+        }
+        return null;
+    };
+
     useEffect(() => {
-        setValue(children)
+        onChange(children);
     }, [children]);
 
-    const inputRef = useRef(null)
-    const [isInputActive, setIsInputActive] = useState(false);
-    const onBlur = async () => {
-        const ok = await onSave(value);
-        if (ok) {
-            setIsInputActive(false)
-        }
-    }
-
-    return <div className={clsx(styles.container, { [styles.active]: active })}>
-        <ColorDot color={color}></ColorDot>
-        <button onClick={onClick} >
-            <span>{children}</span>
-        </button>
-        <Input ref={inputRef} onBlur={onBlur} value={value} onChange={onChange}></Input>
-    </div>;
+    return (
+        <div className={clsx(styles.container, { [styles.active]: active })}>
+            <div className={styles.inner}>
+                <ColorDot className={styles.color} color={color}></ColorDot>
+                <button aria-label className={styles.button} onClick={onClick}></button>
+                <span className={styles.text}>{children}</span>
+            </div>
+            {renderEditableContent()}
+        </div>
+    );
 };
 
 Tag.propTypes = {
@@ -34,5 +76,6 @@ Tag.propTypes = {
     color: PropTypes.string.isRequired,
     active: PropTypes.bool,
     onClick: PropTypes.func,
-
+    onDelete: PropTypes.func,
+    isEditable: PropTypes.bool,
 };

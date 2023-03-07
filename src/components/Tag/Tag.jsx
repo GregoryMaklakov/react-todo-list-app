@@ -30,6 +30,7 @@ export const Tag = ({
                     onBlur={onBlur}
                     value={value}
                     onChange={onChange}
+                    size="small"
                 ></Input>
             );
         }
@@ -63,7 +64,7 @@ export const Tag = ({
             <div className={styles.inner}>
                 <ColorDot className={styles.color} color={color}></ColorDot>
                 <button aria-label className={styles.button} onClick={onClick}></button>
-                <span className={styles.text}>{children}</span>
+                {!isInputActive && <span className={styles.text}>{children}</span>}
             </div>
             {renderEditableContent()}
         </div>

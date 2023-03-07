@@ -15,7 +15,7 @@ export const TodoCard = ({
     onDoneChange,
 }) => {
     return (
-        <div className={clsx(styles.cardTodo)}>
+        <article className={clsx(styles.cardTodo)}>
             <header className={styles.cardHeader}>
                 <h2 className={clsx(styles.title)}>{title}</h2>
                 <div className={clsx(styles.headerButtons)}>
@@ -48,7 +48,7 @@ export const TodoCard = ({
                     Done
                 </Checkbox>
             </footer>
-        </div>
+        </article>
     );
 };
 

@@ -1,10 +1,11 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   cursor: pointer;
   border-radius: 8px;
   position: relative;
+  min-width: 148px;
 }
 .active {
   background-color: #efefef;
@@ -21,6 +22,7 @@
 .text {
   font-size: 14px;
   color: #292d32;
+  text-transform: lowercase;
 }
 
 .actions {
@@ -37,11 +39,21 @@
   height: 24px;
   fill: #6a6e74;
 }
+.actionBtn:not(:last-child) {
+  margin-right: 8px;
+}
 
 .input {
-  width: 96px;
   margin-right: 8px;
   margin-left: 8px;
+  position: absolute;
+  top: 6px;
+  right: 0;
+  left: 34px;
+  height: 32px;
+  min-width: 96px;
+  bottom: 0;
+  background-color: #ffff;
 }
 
 .inner {
@@ -59,6 +71,5 @@
   bottom: 0;
   right: 0;
   background-color: transparent;
-  border-radius: 8px 0 0 8px;
   z-index: 1;
 }

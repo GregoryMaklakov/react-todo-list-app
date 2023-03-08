@@ -10,6 +10,7 @@ import {
   Tag,
   PopupEdit,
 } from "../components";
+import { deleteItemFromArray, editItemInArray } from '../utils'
 import uniqolor from "uniqolor";
 
 function App() {
@@ -57,8 +58,8 @@ function App() {
 
   //сохранять todo id(edit)
   const [editTodoId, setEditTodoId] = useState(null);
-  //Удалять todo id
   const [deleteTodoId, setDeleteTodoId] = useState(null);
+
   //Удалять теги
   const [deleteTagId, setDeleteTagId] = useState(null);
 
@@ -80,20 +81,30 @@ function App() {
   };
 
   //меняем значения тега
-  const onSaveTag = async (tag) => {
-    const copy = [...tags];
-    const idx = copy.findIndex(({ id }) => id === tag.id);
-    //hasMatch проверяем на наличии такого же value(имени) в теге
-    const hasMatch = copy.some(
-      ({ name }) => name.toLowerCase() === tag.name.toLowerCase()
-    );
-    if (idx >= 0 && !hasMatch) {
-      copy.splice(idx, 1, tag);
-      setTags(copy);
-      return true;
-    }
-    return false;
-  };
+  const onSaveTag = async (tag) =>
+    editItemInArray({
+      item: tag,
+      list: tags,
+      setState: setTags,
+      extraConditional: !tags.some(
+        ({ name }) => name.toLowerCase() === tag.name.toLowerCase()
+      ),
+    });
+
+  const onSaveTodo = (newTodo) =>
+    editItemInArray({
+      item: newTodo,
+      list: todos,
+      setState: setTodos,
+    });
+
+  const onDeleteTodo = () =>
+    deleteItemFromArray({
+      list: todos,
+      id: deleteTodoId,
+      setState: setTodos,
+      onCleanUp: setDeleteTodoId,
+    });
 
   const onDeleteTag = () =>
     deleteItemFromArray({
@@ -117,25 +128,6 @@ function App() {
     setTags((prevState) => [...prevState, newTag]);
     return true;
   };
-
-  const onSaveTodo = (newTodo) => {
-    const copy = [...todos];
-    const idx = copy.findIndex(({ id }) => id === newTodo.id);
-    if (idx >= 0) {
-      copy.splice(idx, 1, { ...copy[idx], ...newTodo });
-      setTodos(copy);
-      return true;
-    }
-    return false;
-  };
-
-  const onDeleteTodo = () =>
-    deleteItemFromArray({
-      list: todos,
-      id: deleteTodoId,
-      setState: setTodos,
-      onCleanUp: setDeleteTodoId,
-    });
 
   //========================================================================================
   return (

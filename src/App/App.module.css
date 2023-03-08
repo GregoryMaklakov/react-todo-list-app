@@ -1,13 +1,12 @@
 .container {
   min-height: 100vh;
-  background: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-right: 16px;
   padding-left: 16px;
-  max-width: 800px;
+  max-width: 1286px;
   margin: 0 auto;
   gap: 24px;
 }
@@ -18,4 +17,13 @@
   justify-content: center;
   gap: 24px;
   flex-wrap: wrap;
+}
+
+body {
+  background-image: -webkit-radial-gradient(#ffd900 1px, transparent 0),
+    -webkit-radial-gradient(#ffd900 1px, transparent 0);
+  background-position: 0 0, 25px 25px;
+
+  background-size: 50px 50px;
+  z-index: -1;
 }

@@ -16,7 +16,7 @@ export const Tag = ({
     onDelete,
     isEditable,
 }) => {
-    const { inputRef, isInputActive, onBlur, onChange, value, setIsInputActive } =
+    const { inputRef, isInputActive, handelSave, onChange, value, setIsInputActive } =
         useEditable({
             onSave,
         });
@@ -27,10 +27,11 @@ export const Tag = ({
                 <Input
                     className={styles.input}
                     ref={inputRef}
-                    onBlur={onBlur}
+                    onBlur={handelSave}
                     value={value}
                     onChange={onChange}
                     size="small"
+                    onEnterPress={handelSave}
                 ></Input>
             );
         }

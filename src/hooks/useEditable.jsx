@@ -7,7 +7,7 @@ export const useEditable = ({ cleanAfterSuccess, onSave }) => {
     const [isInputActive, setIsInputActive] = useState(false);
     const [value, setValue] = useState('');
 
-    const onBlur = async () => {
+    const handelSave = async () => {
         setIsInputActive(false);
         const ok = await onSave(value);
         if (ok) {
@@ -25,5 +25,5 @@ export const useEditable = ({ cleanAfterSuccess, onSave }) => {
         }
     }, [inputRef, isInputActive])
 
-    return { onBlur, isInputActive, inputRef, onChange: setValue, value, setIsInputActive };
+    return { handelSave, isInputActive, inputRef, onChange: setValue, value, setIsInputActive };
 }

@@ -5,6 +5,7 @@ export * from "./Icon";
 export * from "./Input";
 export * from "./Popup";
 export * from "./PopupDelete";
+export * from "./PopupEdit";
 export * from "./EditableButton";
 export * from "./TodoCard";
 export * from "./Tag";

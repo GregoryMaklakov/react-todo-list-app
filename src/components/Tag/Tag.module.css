@@ -10,15 +10,18 @@
 .active {
   background-color: #efefef;
 }
+
 .active .actions,
 .container:hover .actions {
   opacity: 1;
   visibility: visible;
   width: auto;
 }
+
 .color {
   margin-right: 8px;
 }
+
 .text {
   font-size: 14px;
   color: #292d32;

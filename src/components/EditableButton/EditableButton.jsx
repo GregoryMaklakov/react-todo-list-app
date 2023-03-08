@@ -7,7 +7,7 @@ import { Input } from "../Input";
 import { useEditable } from "../../hooks/useEditable";
 
 export const EditableButton = ({ className, children, icon, onSave }) => {
-    const { inputRef, isInputActive, onBlur, onChange, value, setIsInputActive } = useEditable({
+    const { inputRef, isInputActive, handelSave, onChange, value, setIsInputActive } = useEditable({
         onSave,
         cleanAfterSuccess: true,
     });
@@ -16,10 +16,11 @@ export const EditableButton = ({ className, children, icon, onSave }) => {
             {isInputActive ? (
                 <Input
                     ref={inputRef}
-                    onBlur={onBlur}
+                    onBlur={handelSave}
                     value={value}
                     onChange={onChange}
                     size="small"
+                    onEnterPress={handelSave}
                 ></Input>
             ) : (
                 <Button

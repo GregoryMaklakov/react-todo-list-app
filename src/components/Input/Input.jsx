@@ -1,10 +1,28 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import styles from "./Input.module.css";
-import { forwardRef } from 'react'
+import { forwardRef } from "react";
 
 export const Input = forwardRef(
-    ({ className, onChange, disabled, value, size, type, name, onBlur }, ref) => {
+    (
+        {
+            className,
+            onChange,
+            disabled,
+            value,
+            size,
+            type,
+            name,
+            onBlur,
+            onEnterPress,
+        },
+        ref
+    ) => {
+        const onKeyUp = (e) => {
+            if (e.keyCode === 13 && onEnterPress) {
+                onEnterPress();
+            }
+        };
         return (
             <input
                 ref={ref}
@@ -15,6 +33,7 @@ export const Input = forwardRef(
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
+                onKeyUp={onKeyUp}
             ></input>
         );
     }
@@ -29,6 +48,7 @@ Input.propTypes = {
     disabled: PropTypes.bool,
     size: PropTypes.oneOf(["small", "large"]),
     onBlur: PropTypes.func,
+    onEnterPress: PropTypes.func,
 };
 Input.defaultProps = {
     size: "large",

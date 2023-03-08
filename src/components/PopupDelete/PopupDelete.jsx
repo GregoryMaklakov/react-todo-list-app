@@ -4,7 +4,7 @@ import styles from "./PopupDelete.module.css";
 import { Popup } from "../Popup/";
 import { Button } from "../Button/";
 
-export const PopupDelete = ({ onDeleted, title, onClose }) => {
+export const PopupDelete = ({ onDelete, title, onClose }) => {
 
     return (
         <Popup className={styles.container}>
@@ -19,7 +19,7 @@ export const PopupDelete = ({ onDeleted, title, onClose }) => {
                 <Button onClick={onClose} variant="text">
                     Cancel
                 </Button>
-                <Button onClick={onDeleted} variant="danger">
+                <Button onClick={onDelete} variant="danger">
                     Delete
                 </Button>
             </div>

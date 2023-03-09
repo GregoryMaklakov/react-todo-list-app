@@ -5,7 +5,7 @@ import styles from "./Tag.module.css";
 import { ColorDot } from "../ColorDot";
 import { useEditable } from "../../hooks/useEditable";
 import { Button } from "../Button/";
-import { Input } from '../Input';
+import { Input } from "../Input";
 
 export const Tag = ({
     children,
@@ -14,12 +14,19 @@ export const Tag = ({
     color,
     active,
     onDelete,
+    className,
     isEditable,
 }) => {
-    const { inputRef, isInputActive, handelSave, onChange, value, setIsInputActive } =
-        useEditable({
-            onSave,
-        });
+    const {
+        inputRef,
+        isInputActive,
+        handelSave,
+        onChange,
+        value,
+        setIsInputActive,
+    } = useEditable({
+        onSave,
+    });
 
     const renderEditableContent = () => {
         if (isEditable && isInputActive) {
@@ -39,13 +46,13 @@ export const Tag = ({
             return (
                 <div className={styles.actions}>
                     <Button
-                        className={styles.actionBtn}
+                        className={styles.actionButton}
                         variant="icon"
                         icon="IconEdit"
                         onClick={() => setIsInputActive(true)}
                     />
                     <Button
-                        className={styles.actionBtn}
+                        className={styles.actionButton}
                         variant="icon"
                         icon="IconDelete"
                         onClick={onDelete}
@@ -61,10 +68,12 @@ export const Tag = ({
     }, [children]);
 
     return (
-        <div className={clsx(styles.container, { [styles.active]: active })}>
+        <div
+            className={clsx(styles.container, { [styles.active]: active }, className)}
+        >
             <div className={styles.inner}>
                 <ColorDot className={styles.color} color={color}></ColorDot>
-                <button aria-label className={styles.button} onClick={onClick}></button>
+                <button aria-label="tag-button" className={styles.button} onClick={onClick}></button>
                 {!isInputActive && <span className={styles.text}>{children}</span>}
             </div>
             {renderEditableContent()}

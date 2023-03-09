@@ -15,6 +15,7 @@ export const Input = forwardRef(
             name,
             onBlur,
             onEnterPress,
+            id,
         },
         ref
     ) => {
@@ -25,6 +26,7 @@ export const Input = forwardRef(
         };
         return (
             <input
+                id={id}
                 ref={ref}
                 type={type}
                 name={name}

@@ -2,6 +2,7 @@ export const editItemInArray = async ({
     list,
     item,
     setState,
+    onCleanup,
     extraConditional = true,
 }) => {
     const copy = [...list];

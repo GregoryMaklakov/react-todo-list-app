@@ -11,7 +11,7 @@ import {
   PopupEdit,
 } from "../components";
 import { deleteItemFromArray, editItemInArray } from '../utils'
-import uniqolor from "uniqolor";
+import { useTags } from '../hooks/useTags';
 
 function App() {
   //сохранять todo
@@ -38,65 +38,39 @@ function App() {
       tags: [3],
     },
   ]);
-  const [tags, setTags] = useState([
-    {
-      id: 1,
-      color: "blue",
-      name: "work",
-    },
-    {
-      id: 2,
-      color: "red",
-      name: "study",
-    },
-    {
-      id: 3,
-      color: "purple",
-      name: "family",
-    },
-  ]);
 
+  const tagsState = useTags();
   //сохранять todo id(edit)
   const [editTodoId, setEditTodoId] = useState(null);
   const [deleteTodoId, setDeleteTodoId] = useState(null);
 
   //Удалять теги
-  const [deleteTagId, setDeleteTagId] = useState(null);
+  // const [deleteTagId, setDeleteTagId] = useState(null);
 
-  //Tags
-  const [activeTagId, setActiveTagId] = useState(null);
-  // ======
-  const [inputValue, setInputValue] = useState("");
-  const [check, setCheck] = useState(false);
-  const [done, onDoneChange] = useState(false);
-  const [onDelete, setOnDelete] = useState(false);
+  // //Tags
+  // const [activeTagId, setActiveTagId] = useState(null);
+  // // ======
+  // const [inputValue, setInputValue] = useState("");
+  // const [check, setCheck] = useState(false);
+  // const [done, onDoneChange] = useState(false);
+  // const [onDelete, setOnDelete] = useState(false);
 
   //кашируем наш todos
   const todoEditing = useMemo(() => {
+    if (editTodoId === "new") {
+      return {};
+    }
     return todos.find(({ id }) => id === editTodoId);
   }, [editTodoId, todos]);
 
-  const getPatsedTags = (tagIds = []) => {
-    return tags.filter(({ id }) => tagIds.includes(id));
-  };
-
-  //меняем значения тега
-  const onSaveTag = async (tag) =>
+  const onSaveTodo = (newTodo) => {
     editItemInArray({
-      item: tag,
-      list: tags,
-      setState: setTags,
-      extraConditional: !tags.some(
-        ({ name }) => name.toLowerCase() === tag.name.toLowerCase()
-      ),
-    });
-
-  const onSaveTodo = (newTodo) =>
-    editItemInArray({
-      item: newTodo,
+      item: { id: editTodoId, ...newTodo },
       list: todos,
       setState: setTodos,
+      onCleanup: setEditTodoId,
     });
+  };
 
   const onDeleteTodo = () =>
     deleteItemFromArray({
@@ -105,31 +79,7 @@ function App() {
       setState: setTodos,
       onCleanUp: setDeleteTodoId,
     });
-
-  const onDeleteTag = () =>
-    deleteItemFromArray({
-      list: tags,
-      id: deleteTagId,
-      setState: setTags,
-      onCleanUp: setDeleteTagId,
-    });
-
-  // создаем новый тег при нажании на editableButton
-  const onCreateNewTag = async (name) => {
-    const newTag = {
-      id: Date.now(),
-      name,
-      color: uniqolor(name, {
-        saturation: [50, 70],
-        lightness: [70, 80],
-        differencePoint: 50,
-      }).color,
-    };
-    setTags((prevState) => [...prevState, newTag]);
-    return true;
-  };
-
-  //========================================================================================
+  //====================================================================
   return (
     <>
       <div>
@@ -143,52 +93,36 @@ function App() {
               onEdit={() => setEditTodoId(todo.id)}
               text={todo.text}
               title={todo.title}
-              tags={getPatsedTags(todo?.tags)}
+              tags={tagsState.getParsedTags(todo.tags)}
             ></TodoCard>
           );
         })}
       </div>
 
-      {/* открываем попап рпи нажатии на удалить */}
-      {deleteTagId && (
-        <PopupDelete
-          title="Do you really want to delete this task?"
-          onClose={() => setDeleteTagId(null)}
-          onDelete={onDeleteTag}
-        />
-      )}
-
-      {deleteTodoId && (
-        <PopupDelete
-          title="Do you really want to delete this task?"
-          onClose={() => setDeleteTodoId(null)}
-          onDelete={onDeleteTodo}
-        />
-      )}
-
       {/* открываем попап edit */}
-      {editTodoId && (
+      {!!todoEditing && (
         <PopupEdit
-          title={todoEditing.title}
-          text={todoEditing.text}
-          tags={getPatsedTags(todoEditing.tags)}
-          onClose={setEditTodoId(null)}
-          onSave={() => undefined}
-        ></PopupEdit>
+          title={todoEditing?.title}
+          text={todoEditing?.text}
+          tags={tagsState.data}
+          selectedTags={todoEditing?.tags}
+          onClose={() => setEditTodoId(null)}
+          onSave={editTodoId === "new" ? onCreateTodo : onSaveTodo}
+        />
       )}
 
       <div className={styles.container}>
         <div>
-          {tags.map((tag) => {
+          {tagsState.data.map((tag) => {
             return (
               <Tag
                 key={tag.id}
                 color={tag.color}
-                active={activeTagId === tag.id}
+                active={tagsState.activeId === tag.id}
                 isEditable
-                onClick={() => setActiveTagId(tag.id)}
-                onSave={(name) => onSaveTag({ ...tag, name })}
-                onDelete={() => setDeleteTagId(tag.id)}
+                onClick={() => tagsState.setActiveId(tag.id)}
+                onSave={(name) => tagsState.update({ ...tag, name })}
+                onDelete={() => tagsState.setDelitingId(tag.id)}
               >
                 {tag.name}
               </Tag>
@@ -196,14 +130,23 @@ function App() {
           })}
         </div>
 
-        <EditableButton onSave={onCreateNewTag} icon="IconAdd">
+        <EditableButton onSave={tagsState.create} icon="IconAdd">
           add new value
         </EditableButton>
 
-        {onDelete && (
+        {tagsState.delitingId && (
           <PopupDelete
-            onDeleted={() => setOnDeleted(!onDeleted)}
-            title="Do you really want to delete this task?"
+            title="Do you really want to delete this tag?"
+            onClose={() => tagsState.setDelitingId(null)}
+            onDelete={tagsState.delete}
+          />
+        )}
+
+        {deleteTodoId && (
+          <PopupDelete
+            title="Do you really want to delete this tag?"
+            onClose={() => setDeleteTodoId(null)}
+            onDelete={onDeleteTodo}
           />
         )}
       </div>

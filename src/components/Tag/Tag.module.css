@@ -1,5 +1,5 @@
 .container {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
@@ -11,17 +11,14 @@
   background-color: #efefef;
 }
 
-.active .actions,
-.container:hover .actions {
+.color {
+  margin-right: 8px;
+}
+.active .actions {
   opacity: 1;
   visibility: visible;
   width: auto;
 }
-
-.color {
-  margin-right: 8px;
-}
-
 .text {
   font-size: 14px;
   color: #292d32;
@@ -37,7 +34,8 @@
   padding-right: 8px;
   justify-content: center;
 }
-.actionBtn {
+
+.actionButton {
   width: 24px;
   height: 24px;
   fill: #6a6e74;
@@ -60,7 +58,7 @@
 }
 
 .inner {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -74,5 +72,5 @@
   bottom: 0;
   right: 0;
   background-color: transparent;
-  z-index: 1;
+  z-index: 5;
 }

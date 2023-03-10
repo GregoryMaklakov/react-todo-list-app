@@ -1,24 +1,3 @@
-.container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-right: 16px;
-  padding-left: 16px;
-  max-width: 1286px;
-  margin: 0 auto;
-  gap: 24px;
-}
-
-.buttonsAll {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
 body {
   background-image: -webkit-radial-gradient(#ffd900 1px, transparent 0),
     -webkit-radial-gradient(#ffd900 1px, transparent 0);
@@ -26,4 +5,80 @@ body {
 
   background-size: 50px 50px;
   z-index: -1;
+}
+
+.container {
+  min-height: 100vh;
+  padding-right: 16px;
+  padding-left: 16px;
+  max-width: 1286px;
+  margin: 0 auto;
+}
+
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 80px;
+  max-width: 100%;
+  background-image: -webkit-radial-gradient(#ffd900 1px, transparent 0),
+    -webkit-radial-gradient(#ffd900 1px, transparent 0);
+  background-position: 0 0, 25px 25px;
+  background-color: #ffffff;
+  background-size: 50px 50px;
+  z-index: 2;
+  box-shadow: 0px 6px 50px -15px rgba(232, 229, 225, 1);
+}
+.headerContetn {
+  max-width: 1286px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+  color: #292d32;
+}
+
+.hero {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 90vh;
+}
+
+.tagsList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 170px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 100px;
+  margin-bottom: 32px;
+
+  position: sticky;
+  max-height: 300px;
+  top: 120px;
+}
+
+.tag:not(:last-child) {
+  margin-bottom: 24px;
+}
+.editableButton {
+  margin-bottom: 32px;
+}
+
+.todoList {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex: 0 0 75%;
 }

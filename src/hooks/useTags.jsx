@@ -1,14 +1,13 @@
-import { useCallback, useState } from 'react';
-import uniqolor from 'uniqolor';
-import { editItemInArray } from '../utils/editItemInArray';
-import { deleteItemFromArray } from '../utils/deleteItemFromArray';
-
+import { useCallback, useState } from "react";
+import uniqolor from "uniqolor";
+import { editItemInArray } from "../utils/editItemInArray";
+import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
 export const useTags = () => {
     const [tags, setTags] = useState([
-        { id: 1, color: 'blue', name: 'work' },
-        { id: 2, color: 'green', name: 'study' },
-        { id: 3, color: 'red', name: 'family' },
+        { id: 1, color: "blue", name: "work" },
+        { id: 2, color: "green", name: "study" },
+        { id: 3, color: "red", name: "family" },
     ]);
 
     const [delitingId, setDelitingId] = useState(null);

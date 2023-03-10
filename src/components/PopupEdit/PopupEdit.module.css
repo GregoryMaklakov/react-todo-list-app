@@ -1,0 +1,32 @@
+.container {
+  padding: 40px;
+  width: 680px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.popupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.inputLabel {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #535559;
+  margin-bottom: 8px;
+}
+
+.input {
+  margin-bottom: 32px;
+}
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tagList:not(:last-child) {
+  margin-right: 24px;
+}

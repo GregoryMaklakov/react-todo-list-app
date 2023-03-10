@@ -8,14 +8,14 @@ export const useEditable = ({ cleanAfterSuccess, onSave }) => {
     const [value, setValue] = useState('');
 
     const handelSave = async () => {
-        setIsInputActive(false);
-        const ok = await onSave(value);
-        if (ok) {
-            setIsInputActive(false);
-
-        }
-        if (ok && cleanAfterSuccess) {
-            setValue('');
+        if (onSave) {
+            const ok = await onSave(value);
+            if (ok) {
+                setIsInputActive(false);
+            }
+            if (ok && cleanAfterSuccess) {
+                setValue('');
+            }
         }
     };
 

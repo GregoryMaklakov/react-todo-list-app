@@ -20,6 +20,7 @@ export const PopupEdit = ({ onSave, onClose, tags, title, text, selectedTags }) 
             selectedTags,
         });
     }, []);
+
     const onInputChange = () => (key) => (value) => {
         setState((prevState) => ({ ...prevState, [key]: value }));
     }
@@ -27,6 +28,20 @@ export const PopupEdit = ({ onSave, onClose, tags, title, text, selectedTags }) 
     const handleSave = () => {
         onSave({ title: state.title, text: state.text, tags: state.selectedTags })
     }
+
+    const onSelectedTagsChange = (tagId) => {
+        const shallowCopy = [...state.selectedTags];
+        const idx = shallowCopy.findIndex((id) => id === tagId);
+        if (idx >= 0) {
+            shallowCopy.splice(idx, 1);
+        } else {
+            shallowCopy.push(tagId);
+        }
+        setState((prevState) => ({
+            ...prevState,
+            selectedTags: shallowCopy,
+        }));
+    };
     return (
         <Popup className={styles.container}>
             <header className={styles.popupHeader}>
@@ -37,26 +52,26 @@ export const PopupEdit = ({ onSave, onClose, tags, title, text, selectedTags }) 
                 >
                     Cancel
                 </Button>
-                <Button onClick={handleSave}>Save</Button>
+                <Button onClick={handleSave} variant="primary">Save</Button>
             </header>
             <label htmlFor="title" className={styles.inputLabel}>Title</label>
-            <Input value={state.title} id="title" title={title} onChange={onInputChange('title')} />
+            <Input className={styles.input} value={state.title} id="title" title={title} onChange={onInputChange('title')} />
+
             <label htmlFor="description" className={styles.inputLabel}>Description</label>
-            <Input value={state.text} id="description" text={text} onChange={onInputChange('text')} />
-            <div>
-                <p>Tags</p>
-                <ul>
-                    {tags.map((tag) => {
-                        return (
-                            <Tag
-                                onClick={() => undefined}
-                                key={tag.id}
-                                color={tag.color}
-                                active={state.selectedTags.includes(tag.id)}
-                            >{tag.name}</Tag>
-                        );
-                    })}
-                </ul>
+            <Input className={styles.input} value={state.text} id="description" text={text} onChange={onInputChange('text')} />
+            <p className={styles.inputLabel}>Tags</p>
+            <div className={styles.tagList}>
+                {tags.map((tag) => {
+                    return (
+                        <Tag
+                            onClick={() => onSelectedTagsChange(tag.id)}
+                            key={tag.id}
+                            active={state.selectedTags.includes(tag.id)}
+                            color={tag.color}>
+                            {tag.name}
+                        </Tag>
+                    );
+                })}
             </div>
         </Popup>
     )

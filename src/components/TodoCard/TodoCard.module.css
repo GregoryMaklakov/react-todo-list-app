@@ -4,6 +4,11 @@
   width: 441px;
   border-radius: 8px;
   min-height: 147px;
+  max-height: 200px;
+}
+.cardTodo:not(:last-child) {
+  margin-bottom: 16px;
+  margin-right: 16px;
 }
 
 .cardHeader {

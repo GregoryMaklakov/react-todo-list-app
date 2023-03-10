@@ -89,4 +89,5 @@ Tag.propTypes = {
     onClick: PropTypes.func,
     onDelete: PropTypes.func,
     isEditable: PropTypes.bool,
+    onSave: PropTypes.func,
 };

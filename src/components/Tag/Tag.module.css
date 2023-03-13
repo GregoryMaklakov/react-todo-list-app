@@ -8,8 +8,8 @@
   min-width: 148px;
 }
 
-.container:hover {
-  background-color: #fafafa;
+.active {
+  background-color: #efefef;
 }
 
 .active .actions,

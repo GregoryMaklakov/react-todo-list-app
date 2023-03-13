@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import { Button } from "../Button";
-import styles from "./EditableButton.module.css";
 import { ICON_TYPES } from "../Icon/Icon";
 import { Input } from "../Input";
 import { useEditable } from "../../hooks/useEditable";

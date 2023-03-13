@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import PropTypes from "prop-types";
 import styles from "./PopupEdit.module.css";
 import { Popup } from "../Popup";
@@ -8,8 +7,8 @@ import { Input } from "../Input";
 import { Tag } from "../Tag";
 
 export const PopupEdit = ({
-    onSave,
     onClose,
+    onSave,
     tags,
     title,
     text,
@@ -32,11 +31,9 @@ export const PopupEdit = ({
         setState((prevState) => ({ ...prevState, [key]: value }));
     };
 
-
     const handleSave = () => {
         onSave({ title: state.title, text: state.text, tags: state.selectedTags });
     };
-
 
     const onSelectedTagsChange = (tagId) => {
         const shallowCopy = [...state.selectedTags];
@@ -57,24 +54,24 @@ export const PopupEdit = ({
                 <Button className={styles.popupClose} onClick={onClose} variant="text">
                     Cancel
                 </Button>
-                <Button onClick={handleSave} variant="primary">
+                <Button disabled={!state.title} onClick={handleSave} variant="primary">
                     Save
                 </Button>
             </header>
-            <label htmlFor="title" className={styles.inputLabel}>
-                Title
-            </label>
+            <label htmlFor="title" className={styles.inputLabel}>Title</label>
             <Input
+                placeholder="Add a title..."
                 className={styles.input}
                 value={state.title}
+                onChange={onInputChange('title')}
                 id="title"
-                onChange={onInputChange("title")}
             />
 
             <label htmlFor="description" className={styles.inputLabel}>
                 Description
             </label>
             <Input
+                placeholder="Add a description..."
                 className={styles.input}
                 value={state.text}
                 id="description"

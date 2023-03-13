@@ -7,10 +7,17 @@ import { useState, useEffect } from "react";
 import { Input } from "../Input";
 import { Tag } from "../Tag";
 
-export const PopupEdit = ({ onSave, onClose, tags, title, text, selectedTags }) => {
+export const PopupEdit = ({
+    onSave,
+    onClose,
+    tags,
+    title,
+    text,
+    selectedTags,
+}) => {
     const [state, setState] = useState({
-        title: '',
-        text: '',
+        title: "",
+        text: "",
         selectedTags: [],
     });
     useEffect(() => {
@@ -23,11 +30,13 @@ export const PopupEdit = ({ onSave, onClose, tags, title, text, selectedTags }) 
 
     const onInputChange = () => (key) => (value) => {
         setState((prevState) => ({ ...prevState, [key]: value }));
-    }
+    };
+
 
     const handleSave = () => {
-        onSave({ title: state.title, text: state.text, tags: state.selectedTags })
-    }
+        onSave({ title: state.title, text: state.text, tags: state.selectedTags });
+    };
+
 
     const onSelectedTagsChange = (tagId) => {
         const shallowCopy = [...state.selectedTags];
@@ -45,20 +54,32 @@ export const PopupEdit = ({ onSave, onClose, tags, title, text, selectedTags }) 
     return (
         <Popup className={styles.container}>
             <header className={styles.popupHeader}>
-                <Button
-                    className={styles.popupClose}
-                    onClick={onClose}
-                    variant="text"
-                >
+                <Button className={styles.popupClose} onClick={onClose} variant="text">
                     Cancel
                 </Button>
-                <Button onClick={handleSave} variant="primary">Save</Button>
+                <Button onClick={handleSave} variant="primary">
+                    Save
+                </Button>
             </header>
-            <label htmlFor="title" className={styles.inputLabel}>Title</label>
-            <Input className={styles.input} value={state.title} id="title" title={title} onChange={onInputChange('title')} />
+            <label htmlFor="title" className={styles.inputLabel}>
+                Title
+            </label>
+            <Input
+                className={styles.input}
+                value={state.title}
+                id="title"
+                onChange={onInputChange("title")}
+            />
 
-            <label htmlFor="description" className={styles.inputLabel}>Description</label>
-            <Input className={styles.input} value={state.text} id="description" text={text} onChange={onInputChange('text')} />
+            <label htmlFor="description" className={styles.inputLabel}>
+                Description
+            </label>
+            <Input
+                className={styles.input}
+                value={state.text}
+                id="description"
+                onChange={onInputChange("text")}
+            />
             <p className={styles.inputLabel}>Tags</p>
             <div className={styles.tagList}>
                 {tags.map((tag) => {
@@ -67,14 +88,15 @@ export const PopupEdit = ({ onSave, onClose, tags, title, text, selectedTags }) 
                             onClick={() => onSelectedTagsChange(tag.id)}
                             key={tag.id}
                             active={state.selectedTags.includes(tag.id)}
-                            color={tag.color}>
+                            color={tag.color}
+                        >
                             {tag.name}
                         </Tag>
                     );
                 })}
             </div>
         </Popup>
-    )
+    );
 };
 
 PopupEdit.propTypes = {
@@ -94,8 +116,8 @@ PopupEdit.propTypes = {
 };
 
 PopupEdit.defaultProps = {
-    tags: [],
-    tags: "",
+    text: "",
     title: "",
+    tags: [],
     selectedTags: [],
 };

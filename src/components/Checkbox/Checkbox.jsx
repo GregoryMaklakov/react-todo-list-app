@@ -8,10 +8,10 @@ export const Checkbox = ({ children, checked, onChange }) => {
     return (
         <label className={clsx(styles.container)}>
             <input
+                type="checkbox"
                 className={styles.checkboxInput}
                 checked={checked}
                 onChange={() => onChange(!checked)}
-                type="checkbox"
             />
             <span className={styles.checkboxLabel}>
                 <span className={styles.checkboxIcon}>

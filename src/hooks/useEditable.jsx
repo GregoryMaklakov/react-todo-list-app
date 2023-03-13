@@ -1,11 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
-
+import { useState, useRef, useEffect } from "react";
 
 export const useEditable = ({ cleanAfterSuccess, onSave }) => {
-
     const inputRef = useRef(null);
     const [isInputActive, setIsInputActive] = useState(false);
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
 
     const handelSave = async () => {
         if (onSave) {
@@ -14,16 +12,23 @@ export const useEditable = ({ cleanAfterSuccess, onSave }) => {
                 setIsInputActive(false);
             }
             if (ok && cleanAfterSuccess) {
-                setValue('');
+                setValue("");
             }
         }
     };
 
     useEffect(() => {
         if (inputRef?.current && isInputActive) {
-            inputRef.current.focus()
+            inputRef.current.focus();
         }
-    }, [inputRef, isInputActive])
+    }, [inputRef, isInputActive]);
 
-    return { handelSave, isInputActive, inputRef, onChange: setValue, value, setIsInputActive };
-}
+    return {
+        handelSave,
+        isInputActive,
+        inputRef,
+        onChange: setValue,
+        value,
+        setIsInputActive,
+    };
+};

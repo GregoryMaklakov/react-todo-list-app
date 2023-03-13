@@ -27,6 +27,9 @@ export const Tag = ({
     } = useEditable({
         onSave,
     });
+    useEffect(() => {
+        onChange(children);
+    }, [children]);
 
     const renderEditableContent = () => {
         if (isEditable && isInputActive) {
@@ -39,7 +42,7 @@ export const Tag = ({
                     onChange={onChange}
                     size="small"
                     onEnterPress={handelSave}
-                ></Input>
+                />
             );
         }
         if (isEditable && !isInputActive) {
@@ -48,12 +51,14 @@ export const Tag = ({
                     <Button
                         className={styles.actionButton}
                         variant="icon"
+                        size="small"
                         icon="IconEdit"
                         onClick={() => setIsInputActive(true)}
                     />
                     <Button
                         className={styles.actionButton}
                         variant="icon"
+                        size="small"
                         icon="IconDelete"
                         onClick={onDelete}
                     />
@@ -63,18 +68,19 @@ export const Tag = ({
         return null;
     };
 
-    useEffect(() => {
-        onChange(children);
-    }, [children]);
 
     return (
         <div
-            className={clsx(styles.container, { [styles.active]: active }, className)}
+            className={clsx(styles.container, className, { [styles.active]: active })}
         >
             <div className={styles.inner}>
                 <ColorDot className={styles.color} color={color}></ColorDot>
-                <button aria-label="tag-button" className={styles.button} onClick={onClick}></button>
-                {!isInputActive && <span className={styles.text}>{children}</span>}
+                <button
+                    aria-label="tag-button"
+                    className={styles.button}
+                    onClick={onClick}
+                />
+                <span className={styles.text}>{children}</span>
             </div>
             {renderEditableContent()}
         </div>

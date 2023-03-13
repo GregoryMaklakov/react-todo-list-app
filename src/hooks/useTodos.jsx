@@ -30,15 +30,12 @@ export const useTodos = () => {
     const [editTodoId, setEditTodoId] = useState(null);
     const [deleteTodoId, setDeleteTodoId] = useState(null);
 
-    const [hideTodos, setHideTodos] = useState(false);
 
-    const hideDoneTodo = () => {
-        const shallowCopy = [...todos];
-        const checkTodos = shallowCopy.filter((todo) => !todo.done);
-        setHideTodos(!hideTodos);
-        setTodos(!hideTodos ? checkTodos : shallowCopy);
-    }
-
+    const hideDoneTodos = () => {
+        const copyTodos = [...todos];
+        const doneTodo = copyTodos.filter((todo) => !todo.done);
+        setTodos(doneTodo);
+    };
     const todoEditing = useMemo(() => {
         if (editTodoId === "new") {
             return {};
@@ -72,7 +69,6 @@ export const useTodos = () => {
         [setTodos]
     );
 
-
     const onDeleteTodo = useCallback(
         () =>
             deleteItemFromArray({
@@ -93,8 +89,7 @@ export const useTodos = () => {
         deleteTodoId,
         setDeleteTodoId,
         setEditTodoId,
-
-        hideDoneTodo,
+        hideDoneTodos,
         create: onCreateTodo,
         delete: onDeleteTodo,
         update: onSaveTodo,

@@ -11,6 +11,10 @@ export const useEditable = ({ cleanAfterSuccess, onSave }) => {
             if (ok) {
                 setIsInputActive(false);
             }
+            //працюэ як onBlur
+            if (!ok && onSave) {
+                setIsInputActive(false);
+            }
             if (ok && cleanAfterSuccess) {
                 setValue("");
             }

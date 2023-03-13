@@ -57,8 +57,8 @@ function App() {
           </EditableButton>
 
           <Checkbox
-            checked={() => todosState.hideTodos}
-            onChange={() => todosState.hideDoneTodo}
+            checked={todosState.done}
+            onChange={todosState.hideDoneTodos}
           >
             Hide Done Task
           </Checkbox>
@@ -81,7 +81,7 @@ function App() {
         </div>
       </div>
 
-      {/* popups*/}
+      {/* =========================popups==========================*/}
       {!!todosState.todoEditing && (
         <PopupEdit
           title={todosState.todoEditing?.title}
@@ -106,8 +106,8 @@ function App() {
       )}
       {todosState.deleteTodoId && (
         <PopupDelete
-          title="Do you really want to delete this tag?"
-          onClose={() => setDeleteTodoId(null)}
+          title="Do you really want to delete this task?"
+          onClose={() => todosState.setDeleteTodoId(null)}
           onDelete={todosState.delete}
         />
       )}

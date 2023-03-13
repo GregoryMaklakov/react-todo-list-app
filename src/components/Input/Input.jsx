@@ -7,15 +7,16 @@ export const Input = forwardRef(
     (
         {
             className,
+            value,
             onChange,
             disabled,
-            value,
-            size,
-            type,
+            placeholder,
+            id,
             name,
+            type,
+            size,
             onBlur,
             onEnterPress,
-            id,
         },
         ref
     ) => {
@@ -29,6 +30,7 @@ export const Input = forwardRef(
                 id={id}
                 ref={ref}
                 type={type}
+                placeholder={placeholder}
                 name={name}
                 className={clsx(styles.input, styles[size], className)}
                 disabled={disabled}
@@ -36,19 +38,21 @@ export const Input = forwardRef(
                 onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
                 onKeyUp={onKeyUp}
-            ></input>
+            />
         );
     }
 );
 
 Input.propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.string.isRequired,
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     onChange: PropTypes.func,
-    className: PropTypes.string,
-    type: PropTypes.string,
-    name: PropTypes.string,
     disabled: PropTypes.bool,
-    size: PropTypes.oneOf(["small", "large"]),
+    placeholder: PropTypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    size: PropTypes.oneOf(["large", "small"]),
     onBlur: PropTypes.func,
     onEnterPress: PropTypes.func,
 };

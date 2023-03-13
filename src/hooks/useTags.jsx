@@ -5,12 +5,13 @@ import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
 export const useTags = () => {
     const [tags, setTags] = useState([
-        { id: 1, color: "blue", name: "work" },
-        { id: 2, color: "green", name: "study" },
-        { id: 3, color: "red", name: "family" },
+        { id: 1, color: "#BCB9FF", name: "work" },
+        { id: 2, color: "#76B6FF", name: "study" },
+        { id: 3, color: "#FF9960", name: "family" },
+        { id: 4, color: "#A0EC83", name: "entertainment" },
     ]);
 
-    const [delitingId, setDelitingId] = useState(null);
+    const [deletingId, setDeletingId] = useState(null);
     const [activeId, setActiveId] = useState(null);
 
     const getParsedTags = useCallback(
@@ -37,14 +38,11 @@ export const useTags = () => {
         () =>
             deleteItemFromArray({
                 list: tags,
-                id: delitingId,
+                id: deletingId,
                 setState: setTags,
-                onCleanup: setDelitingId,
+                onCleanup: setDeletingId,
             }),
-        [tags],
-        delitingId,
-        setTags,
-        setDelitingId
+        [tags, deletingId, setTags, setDeletingId]
     );
 
     const onCreateNewTag = useCallback(
@@ -53,9 +51,9 @@ export const useTags = () => {
                 id: Date.now(),
                 name,
                 color: uniqolor.random({
-                    saturation: [50, 70],
-                    lightness: [70, 80],
-                    differencePoint: 50,
+                    saturation: [35, 70],
+                    lightness: 80,
+                    differencePoint: 100,
                 }).color,
             };
             setTags((prevState) => [...prevState, newTag]);
@@ -68,8 +66,8 @@ export const useTags = () => {
         data: tags,
         setData: setTags,
         activeId,
-        delitingId,
-        setDelitingId,
+        deletingId,
+        setDeletingId,
         setActiveId,
         getParsedTags,
         create: onCreateNewTag,
@@ -77,3 +75,4 @@ export const useTags = () => {
         update: onSaveTag,
     };
 };
+

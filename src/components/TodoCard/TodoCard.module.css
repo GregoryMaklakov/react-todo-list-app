@@ -6,7 +6,7 @@
   min-height: 147px;
   max-height: 200px;
 }
-.cardTodo:not(:last-child) {
+.cardTodo {
   margin-bottom: 16px;
   margin-right: 16px;
 }
@@ -66,4 +66,11 @@
 }
 .colorTag:not(:last-child) {
   margin-right: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .cardTodo {
+    width: 100%;
+    margin-right: 0px;
+  }
 }

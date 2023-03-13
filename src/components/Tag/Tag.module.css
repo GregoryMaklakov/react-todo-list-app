@@ -2,23 +2,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
   border-radius: 8px;
+  transition: all 0.3s ease 0s;
   position: relative;
   min-width: 148px;
 }
-.active {
-  background-color: #efefef;
+
+.container:hover {
+  background-color: #fafafa;
+}
+
+.active .actions,
+.container:hover .actions {
+  opacity: 1;
+  visibility: visible;
+  width: auto;
 }
 
 .color {
   margin-right: 8px;
 }
-.active .actions {
-  opacity: 1;
-  visibility: visible;
-  width: auto;
-}
+
 .text {
   font-size: 14px;
   color: #292d32;
@@ -28,22 +32,14 @@
 .actions {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
+  justify-content: center;
   opacity: 0;
   visibility: hidden;
   width: 0;
   padding-right: 8px;
-  justify-content: center;
+  transition: all 0.3s ease 0s;
 }
-
-.actionButton {
-  width: 24px;
-  height: 24px;
-  fill: #6a6e74;
-}
-.actionBtn:not(:last-child) {
-  margin-right: 8px;
-}
-
 .input {
   margin-right: 8px;
   margin-left: 8px;
@@ -55,6 +51,16 @@
   min-width: 96px;
   bottom: 0;
   background-color: #ffff;
+}
+
+.actionButton {
+  width: 24px;
+  height: 24px;
+  fill: #6a6e74;
+  z-index: 10;
+}
+.actionBtn:not(:last-child) {
+  margin-right: 8px;
 }
 
 .inner {
@@ -71,6 +77,6 @@
   top: 0;
   bottom: 0;
   right: 0;
-  background-color: transparent;
-  z-index: 5;
+  z-index: 1;
+  border-radius: 8px 0px 0px 8px;
 }

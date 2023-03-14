@@ -8,7 +8,7 @@ export const useTags = () => {
         { id: 1, color: "#BCB9FF", name: "work" },
         { id: 2, color: "#76B6FF", name: "study" },
         { id: 3, color: "#FF9960", name: "family" },
-        { id: 4, color: "#A0EC83", name: "entertainment" },
+        { id: 4, color: "#A0EC83", name: "other" },
     ]);
 
     const [deletingId, setDeletingId] = useState(null);
@@ -23,6 +23,7 @@ export const useTags = () => {
 
     const onSaveTag = useCallback(
         async (tag) =>
+
             editItemInArray({
                 item: tag,
                 list: tags,
@@ -30,6 +31,7 @@ export const useTags = () => {
                 extraConditional: !tags.some(
                     ({ name }) => name.toLowerCase() === tag.name.toLowerCase()
                 ),
+
             }),
         [tags, setTags]
     );
@@ -47,6 +49,9 @@ export const useTags = () => {
 
     const onCreateNewTag = useCallback(
         async (name) => {
+            if (name.length <= 0) {
+                return null;
+            }
             const newTag = {
                 id: Date.now(),
                 name,
@@ -75,4 +80,3 @@ export const useTags = () => {
         update: onSaveTag,
     };
 };
-

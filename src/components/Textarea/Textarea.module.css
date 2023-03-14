@@ -13,6 +13,7 @@
   line-height: 17px;
   color: #292d32;
   min-width: 100%;
+  resize: none;
 }
 
 .textarea::placeholder {

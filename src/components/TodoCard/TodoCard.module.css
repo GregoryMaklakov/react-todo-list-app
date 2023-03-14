@@ -3,10 +3,11 @@
   background-color: #fff8d5;
   min-width: 100%;
   border-radius: 8px;
+
   min-height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 38px 1fr 38px;
   margin-bottom: 16px;
   margin-right: 16px;
 }
@@ -43,9 +44,9 @@
   line-height: 17px;
   color: #6a6e74;
   margin-bottom: 16px;
-  width: 100%;
+  min-width: inherit;
   min-height: auto;
-  display: block;
+  display: flex;
 }
 
 .textChecked {

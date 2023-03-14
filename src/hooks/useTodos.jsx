@@ -30,12 +30,18 @@ export const useTodos = () => {
     const [editTodoId, setEditTodoId] = useState(null);
     const [deleteTodoId, setDeleteTodoId] = useState(null);
 
-
     const hideDoneTodos = () => {
         const copyTodos = [...todos];
         const doneTodo = copyTodos.filter((todo) => !todo.done);
-        setTodos(doneTodo);
+        const unDoneTodo = copyTodos.filter((todo) => todo.done);
+        console.log(unDoneTodo);
+        if (doneTodo) {
+            setTodos(doneTodo);
+        } else {
+            setTodos(unDoneTodo);
+        }
     };
+
     const todoEditing = useMemo(() => {
         if (editTodoId === "new") {
             return {};

@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import styles from "./Input.module.css";
+import styles from "./Textarea.module.css";
 import { forwardRef } from "react";
 
-export const Input = forwardRef(
+export const Textarea = forwardRef(
     (
         {
             className,
@@ -28,7 +28,9 @@ export const Input = forwardRef(
             }
         };
         return (
-            <input
+            <textarea
+                cols="40"
+                rows="5"
                 required={true}
                 minLength={minLength}
                 maxLength={maxLength}
@@ -37,7 +39,7 @@ export const Input = forwardRef(
                 type={type}
                 placeholder={placeholder}
                 name={name}
-                className={clsx(styles.input, styles[size], className)}
+                className={clsx(styles.textarea, styles[size], className)}
                 disabled={disabled}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
@@ -48,7 +50,7 @@ export const Input = forwardRef(
     }
 );
 
-Input.propTypes = {
+Textarea.propTypes = {
     value: PropTypes.string.isRequired,
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     onChange: PropTypes.func,
@@ -63,6 +65,6 @@ Input.propTypes = {
     minLength: PropTypes.number.isRequired,
     maxLength: PropTypes.number.isRequired,
 };
-Input.defaultProps = {
+Textarea.defaultProps = {
     size: "large",
 };

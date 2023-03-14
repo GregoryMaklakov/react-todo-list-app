@@ -45,7 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 30%;
+  width: 350px;
   padding-left: 10px;
   padding-right: 10px;
   margin-right: 100px;
@@ -64,12 +64,24 @@ body {
 }
 
 .todoList {
-  display: flex;
-  flex-direction: row;
-  align-content: flex-start;
-  flex-wrap: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 200px repeat(auto-fill, 200px) 200px;
+  column-gap: 16px;
   padding-right: 8px;
   padding-left: 8px;
+}
+@media screen and (max-width: 1024px) {
+  .todoList {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px repeat(auto-fill, 200px) 200px;
+    column-gap: 16px;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
 }
 
 @media screen and (max-width: 768px) {

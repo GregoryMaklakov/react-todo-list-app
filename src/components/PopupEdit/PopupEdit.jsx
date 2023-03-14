@@ -5,6 +5,8 @@ import { Button } from "../Button";
 import { useState, useEffect } from "react";
 import { Input } from "../Input";
 import { Tag } from "../Tag";
+import { Textarea } from "../Textarea";
+
 
 export const PopupEdit = ({
     onClose,
@@ -19,6 +21,7 @@ export const PopupEdit = ({
         text: "",
         selectedTags: [],
     });
+
     useEffect(() => {
         setState({
             title,
@@ -27,10 +30,9 @@ export const PopupEdit = ({
         });
     }, []);
 
-    const onInputChange = () => (key) => (value) => {
+    const onInputChange = (key) => (value) => {
         setState((prevState) => ({ ...prevState, [key]: value }));
     };
-
     const handleSave = () => {
         onSave({ title: state.title, text: state.text, tags: state.selectedTags });
     };
@@ -60,6 +62,8 @@ export const PopupEdit = ({
             </header>
             <label htmlFor="title" className={styles.inputLabel}>Title</label>
             <Input
+                minLength={3}
+                maxLength={20}
                 placeholder="Add a title..."
                 className={styles.input}
                 value={state.title}
@@ -70,9 +74,11 @@ export const PopupEdit = ({
             <label htmlFor="description" className={styles.inputLabel}>
                 Description
             </label>
-            <Input
+            <Textarea
+                minLength={3}
+                maxLength={200}
                 placeholder="Add a description..."
-                className={styles.input}
+                className={styles.inputDesc}
                 value={state.text}
                 id="description"
                 onChange={onInputChange("text")}
@@ -97,8 +103,8 @@ export const PopupEdit = ({
 };
 
 PopupEdit.propTypes = {
-    title: PropTypes.string,
     className: PropTypes.string,
+    title: PropTypes.node,
     onSave: PropTypes.func,
     onClose: PropTypes.func,
     text: PropTypes.string,
@@ -113,8 +119,8 @@ PopupEdit.propTypes = {
 };
 
 PopupEdit.defaultProps = {
-    text: "",
-    title: "",
     tags: [],
     selectedTags: [],
+    text: "",
+    title: "",
 };

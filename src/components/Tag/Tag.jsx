@@ -35,6 +35,8 @@ export const Tag = ({
         if (isEditable && isInputActive) {
             return (
                 <Input
+                    minLength={2}
+                    maxLength={12}
                     className={styles.input}
                     ref={inputRef}
                     onBlur={handelSave}

@@ -1,12 +1,12 @@
 .cardTodo {
   padding: 16px 24px;
   background-color: #fff8d5;
-  width: 441px;
+  min-width: 100%;
   border-radius: 8px;
-  min-height: 147px;
-  max-height: 200px;
-}
-.cardTodo {
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-bottom: 16px;
   margin-right: 16px;
 }
@@ -38,10 +38,14 @@
 
 .text {
   font-weight: 400;
+  text-align: left;
   font-size: 14px;
   line-height: 17px;
   color: #6a6e74;
   margin-bottom: 16px;
+  width: 100%;
+  min-height: auto;
+  display: block;
 }
 
 .textChecked {

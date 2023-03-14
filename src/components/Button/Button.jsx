@@ -9,7 +9,7 @@ export const Button = ({
     className,
     children,
     onClick,
-    disebled,
+    disabled,
     size,
     icon,
     fluid,
@@ -28,7 +28,7 @@ export const Button = ({
             )}
             type={onClick ? "button" : "submit"}
             onClick={onClick}
-            disabled={disebled}
+            disabled={disabled}
         >
             {!!icon && <Icon name={icon} />}
             {/* {icon ? <Icon name={icon} className={styles.icon} /> : null} */}

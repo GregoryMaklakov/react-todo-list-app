@@ -27,10 +27,12 @@ export const Textarea = forwardRef(
                 onEnterPress();
             }
         };
+
         return (
             <textarea
                 cols="40"
                 rows="5"
+                wrap='soft'
                 required={true}
                 minLength={minLength}
                 maxLength={maxLength}

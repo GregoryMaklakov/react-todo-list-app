@@ -15,9 +15,9 @@ function App() {
   const tagsState = useTags();
   const todosState = useTodos();
 
-  const onSave = async (value) => {
-    return true;
-  };
+  // const onSave = async (value) => {
+  //   return true;
+  // };
 
   //====================================================================
   return (
@@ -86,7 +86,7 @@ function App() {
       </div>
 
       {/* =========================popups==========================*/}
-      {!!todosState.todoEditing && (
+      {todosState.todoEditing && (
         <PopupEdit
           title={todosState.todoEditing?.title}
           text={todosState.todoEditing?.text}

@@ -75,8 +75,10 @@ export const PopupEdit = ({
                 Description
             </label>
             <Textarea
+                cols={20}
+                rows={20}
                 minLength={3}
-                maxLength={200}
+                maxLength={320}
                 placeholder="Add a description..."
                 className={styles.inputDesc}
                 value={state.text}

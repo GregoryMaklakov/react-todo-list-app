@@ -34,7 +34,7 @@ export const TodoCard = ({
                 </div>
             </header>
             <p className={done ? styles.textChecked : styles.text}>{text}</p>
-            <footer className={clsx(styles.footer)}>
+            <div className={clsx(styles.footer)}>
                 <div className={clsx(styles.colorWrraper)}>
                     {tags.map(({ color, id }) => (
                         <ColorDot className={styles.colorTag} key={id} color={color} />
@@ -47,7 +47,7 @@ export const TodoCard = ({
                 >
                     Done
                 </Checkbox>
-            </footer>
+            </div>
         </article>
     );
 };

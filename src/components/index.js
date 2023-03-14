@@ -3,6 +3,7 @@ export * from "./Checkbox";
 export * from "./ColorDot";
 export * from "./Icon";
 export * from "./Input";
+export * from "./Textarea";
 export * from "./Popup";
 export * from "./PopupDelete";
 export * from "./PopupEdit";

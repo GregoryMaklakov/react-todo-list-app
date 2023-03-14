@@ -14,6 +14,8 @@ export const EditableButton = ({ className, children, icon, onSave }) => {
         <div className={clsx(className)}>
             {isInputActive ? (
                 <Input
+                    minLength={2}
+                    maxLength={12}
                     ref={inputRef}
                     onBlur={handelSave}
                     value={value}

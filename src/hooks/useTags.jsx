@@ -23,7 +23,6 @@ export const useTags = () => {
 
     const onSaveTag = useCallback(
         async (tag) =>
-
             editItemInArray({
                 item: tag,
                 list: tags,
@@ -31,7 +30,6 @@ export const useTags = () => {
                 extraConditional: !tags.some(
                     ({ name }) => name.toLowerCase() === tag.name.toLowerCase()
                 ),
-
             }),
         [tags, setTags]
     );
@@ -52,6 +50,10 @@ export const useTags = () => {
             if (name.length <= 0) {
                 return null;
             }
+            if (tags.some((tag) => tag.name === name)) {
+                alert(`Tag "${name}" already exists!`);
+                return null;
+            }
             const newTag = {
                 id: Date.now(),
                 name,
@@ -64,7 +66,8 @@ export const useTags = () => {
             setTags((prevState) => [...prevState, newTag]);
             return true;
         },
-        [setTags]
+        // добавили массив tags в зависимости массива колбэков в useCallback, чтобы функция onCreateNewTag была пересоздана, когда tags меняется.
+        [setTags, tags]
     );
 
     return {

@@ -30,17 +30,31 @@ export const useTodos = () => {
     const [editTodoId, setEditTodoId] = useState(null);
     const [deleteTodoId, setDeleteTodoId] = useState(null);
 
-    const hideDoneTodos = () => {
-        const copyTodos = [...todos];
-        const doneTodo = copyTodos.filter((todo) => !todo.done);
-        const unDoneTodo = copyTodos.filter((todo) => todo.done);
-        console.log(unDoneTodo);
-        if (doneTodo) {
-            setTodos(doneTodo);
-        } else {
-            setTodos(unDoneTodo);
-        }
+    const [showDone, setShowDone] = useState(true);
+
+    const filteredTasks = showDone ? todos : todos.filter(todo => !todo.done);
+
+    const handleToggleShowDone = () => {
+        setShowDone(!showDone);
     };
+
+    // вернутся к этому методу фильтрации(если handleToggleShowDone не сработает)
+    // const hideDoneTodos = () => {
+    //     const copyTodos = [...todos];
+    //     const doneTodo = copyTodos.filter((todo) => !todo.done);
+    //     const unDoneTodo = copyTodos.filter((todo) => todo.done);
+    //     switch (setTodos) {
+    //         case "done":
+    //             setTodos(doneTodo)
+    //             break;
+    //         case "undone":
+    //             setTodos(!unDoneTodo)
+    //             break;
+    //         default:
+    //             setTodos(doneTodo);
+    //             break;
+    //     }
+    // };
 
     const todoEditing = useMemo(() => {
         if (editTodoId === "new") {
@@ -86,7 +100,6 @@ export const useTodos = () => {
         [todos, deleteTodoId, setTodos, setDeleteTodoId]
     );
 
-
     return {
         data: todos,
         setData: setTodos,
@@ -95,9 +108,11 @@ export const useTodos = () => {
         deleteTodoId,
         setDeleteTodoId,
         setEditTodoId,
-        hideDoneTodos,
+        handleToggleShowDone,
+        filteredTasks,
+        showDone,
         create: onCreateTodo,
         delete: onDeleteTodo,
         update: onSaveTodo,
-    }
-}
+    };
+};

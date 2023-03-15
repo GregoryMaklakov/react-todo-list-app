@@ -11,6 +11,41 @@
   margin-bottom: 16px;
   margin-right: 16px;
 }
+/* variant 1 */
+.cardTodoChecked {
+  padding: 16px 24px;
+  min-width: 100%;
+  border-radius: 8px;
+  min-height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 38px 1fr 38px;
+  margin-bottom: 16px;
+  margin-right: 16px;
+
+  backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 35px 35px 68px 0px rgba(229, 232, 232, 0.5),
+    inset -8px -8px 16px 0px rgba(229, 232, 232, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+/* variant 2 */
+/* 
+.cardTodoChecked {
+  padding: 16px 24px;
+  min-width: 100%;
+  border-radius: 8px;
+  min-height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 38px 1fr 38px;
+  margin-bottom: 16px;
+  margin-right: 16px;
+  background-color: #fff8d5;
+  opacity: 0.8;
+} */
 
 .cardHeader {
   display: flex;
@@ -18,6 +53,14 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 14px;
+}
+.cardHeaderChecked {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  opacity: 0.4;
 }
 
 .headerButtons {
@@ -35,6 +78,7 @@
   font-size: 18px;
   line-height: 21px;
   color: #535559;
+  text-transform: capitalize;
 }
 
 .text {
@@ -47,6 +91,7 @@
   min-width: inherit;
   min-height: auto;
   display: flex;
+  word-break: break-all;
 }
 
 .textChecked {
@@ -56,6 +101,8 @@
   margin-bottom: 16px;
   color: #6a6e74;
   text-decoration-line: line-through;
+  word-break: break-all;
+  opacity: 0.4;
 }
 .footer {
   display: flex;

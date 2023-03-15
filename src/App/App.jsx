@@ -61,14 +61,14 @@ function App() {
           </EditableButton>
 
           <Checkbox
-            checked={todosState.done}
-            onChange={todosState.hideDoneTodos}
+            checked={!todosState.showDone}
+            onChange={todosState.handleToggleShowDone}
           >
             Hide Done Task
           </Checkbox>
         </aside>
         <div className={styles.todoList}>
-          {todosState.data.map((todo) => {
+          {todosState.filteredTasks.map((todo) => {
             return (
               <TodoCard
                 key={todo.id}
@@ -86,36 +86,42 @@ function App() {
       </div>
 
       {/* =========================popups==========================*/}
-      {todosState.todoEditing && (
-        <PopupEdit
-          title={todosState.todoEditing?.title}
-          text={todosState.todoEditing?.text}
-          tags={tagsState.data}
-          selectedTags={todosState?.tags}
-          onClose={() => todosState.setEditTodoId(null)}
-          onSave={
-            todosState.editTodoId === "new"
-              ? todosState.create
-              : todosState.update
-          }
-        />
-      )}
+      {
+        todosState.todoEditing && (
+          <PopupEdit
+            title={todosState.todoEditing?.title}
+            text={todosState.todoEditing?.text}
+            tags={tagsState.data}
+            selectedTags={todosState?.tags}
+            onClose={() => todosState.setEditTodoId(null)}
+            onSave={
+              todosState.editTodoId === "new"
+                ? todosState.create
+                : todosState.update
+            }
+          />
+        )
+      }
 
-      {tagsState.deletingId && (
-        <PopupDelete
-          title="Do you really want to delete this tag?"
-          onClose={() => tagsState.setDeletingId(null)}
-          onDelete={tagsState.delete}
-        />
-      )}
-      {todosState.deleteTodoId && (
-        <PopupDelete
-          title="Do you really want to delete this task?"
-          onClose={() => todosState.setDeleteTodoId(null)}
-          onDelete={todosState.delete}
-        />
-      )}
-    </div>
+      {
+        tagsState.deletingId && (
+          <PopupDelete
+            title="Do you really want to delete this tag?"
+            onClose={() => tagsState.setDeletingId(null)}
+            onDelete={tagsState.delete}
+          />
+        )
+      }
+      {
+        todosState.deleteTodoId && (
+          <PopupDelete
+            title="Do you really want to delete this task?"
+            onClose={() => todosState.setDeleteTodoId(null)}
+            onDelete={todosState.delete}
+          />
+        )
+      }
+    </div >
   );
 }
 

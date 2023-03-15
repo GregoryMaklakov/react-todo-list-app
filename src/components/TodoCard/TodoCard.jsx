@@ -15,8 +15,8 @@ export const TodoCard = ({
     onDoneChange,
 }) => {
     return (
-        <article className={clsx(styles.cardTodo)}>
-            <header className={styles.cardHeader}>
+        <article className={clsx(done ? styles.cardTodoChecked : styles.cardTodo)}>
+            <header className={done ? styles.cardHeaderChecked : styles.cardHeader}>
                 <h2 className={clsx(styles.title)}>{title}</h2>
                 <div className={clsx(styles.headerButtons)}>
                     <Button

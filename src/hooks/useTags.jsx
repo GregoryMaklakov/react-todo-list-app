@@ -20,6 +20,7 @@ export const useTags = () => {
         }
 
     });
+
     useEffect(() => {
         localStorage.setItem(TAGS_STORAGE_KEY, JSON.stringify(tags))
     }, [tags]);

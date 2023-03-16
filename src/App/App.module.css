@@ -53,9 +53,11 @@ body {
 }
 .tagsList {
   margin-bottom: 32px;
+  max-height: 60vh;
+  overflow-y: scroll;
 }
 
-.tag {
+.tag:not(:last-child) {
   margin-bottom: 24px;
 }
 .editableButton {
@@ -117,6 +119,8 @@ body {
     background-size: 50px 50px;
     z-index: 2;
     padding-bottom: 16px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
   .tagsList {
     display: flex;
@@ -127,13 +131,18 @@ body {
     margin-bottom: 0px;
     max-height: 180px;
     overflow-y: scroll;
+    margin-bottom: 16px;
   }
   .tag {
-    margin-bottom: 8px;
     margin-right: 24px;
+  }
+  .tag:not(:last-child) {
+    margin-bottom: 0px;
   }
   .todoList {
     margin-top: 280px;
+    padding-right: 0;
+    padding-left: 0;
   }
   .editableButton {
     margin-top: 8px;

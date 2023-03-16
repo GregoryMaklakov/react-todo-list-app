@@ -15,10 +15,6 @@ function App() {
   const tagsState = useTags();
   const todosState = useTodos();
 
-  // const onSave = async (value) => {
-  //   return true;
-  // };
-
   //====================================================================
   return (
     <div className={styles.container}>
@@ -86,42 +82,36 @@ function App() {
       </div>
 
       {/* =========================popups==========================*/}
-      {
-        todosState.todoEditing && (
-          <PopupEdit
-            title={todosState.todoEditing?.title}
-            text={todosState.todoEditing?.text}
-            tags={tagsState.data}
-            selectedTags={todosState?.tags}
-            onClose={() => todosState.setEditTodoId(null)}
-            onSave={
-              todosState.editTodoId === "new"
-                ? todosState.create
-                : todosState.update
-            }
-          />
-        )
-      }
+      {todosState.todoEditing && (
+        <PopupEdit
+          title={todosState.todoEditing?.title}
+          text={todosState.todoEditing?.text}
+          tags={tagsState.data}
+          selectedTags={todosState?.tags}
+          onClose={() => todosState.setEditTodoId(null)}
+          onSave={
+            todosState.editTodoId === "new"
+              ? todosState.create
+              : todosState.update
+          }
+        />
+      )}
 
-      {
-        tagsState.deletingId && (
-          <PopupDelete
-            title="Do you really want to delete this tag?"
-            onClose={() => tagsState.setDeletingId(null)}
-            onDelete={tagsState.delete}
-          />
-        )
-      }
-      {
-        todosState.deleteTodoId && (
-          <PopupDelete
-            title="Do you really want to delete this task?"
-            onClose={() => todosState.setDeleteTodoId(null)}
-            onDelete={todosState.delete}
-          />
-        )
-      }
-    </div >
+      {tagsState.deletingId && (
+        <PopupDelete
+          title="Do you really want to delete this tag?"
+          onClose={() => tagsState.setDeletingId(null)}
+          onDelete={tagsState.delete}
+        />
+      )}
+      {todosState.deleteTodoId && (
+        <PopupDelete
+          title="Do you really want to delete this task?"
+          onClose={() => todosState.setDeleteTodoId(null)}
+          onDelete={todosState.delete}
+        />
+      )}
+    </div>
   );
 }
 

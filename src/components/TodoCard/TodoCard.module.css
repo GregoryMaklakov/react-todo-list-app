@@ -1,17 +1,17 @@
 .cardTodo {
   padding: 16px 24px;
-  background-color: #fff8d5;
   min-width: 100%;
-  border-radius: 8px;
-
   min-height: auto;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 38px 1fr 38px;
   margin-bottom: 16px;
   margin-right: 16px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #ffffe4, #e6dfc0);
+  box-shadow: 8px 8px 16px #e6dfc0, -8px -8px 16px #ffffea;
 }
-/* variant 1 */
+
 .cardTodoChecked {
   padding: 16px 24px;
   min-width: 100%;
@@ -22,30 +22,9 @@
   grid-template-rows: 38px 1fr 38px;
   margin-bottom: 16px;
   margin-right: 16px;
-
-  backdrop-filter: blur(4px);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  box-shadow: 35px 35px 68px 0px rgba(229, 232, 232, 0.5),
-    inset -8px -8px 16px 0px rgba(229, 232, 232, 0.6),
-    inset 0px 11px 28px 0px rgb(255, 255, 255);
+  background: linear-gradient(145deg, #d8d8d8, #ffffff);
+  box-shadow: 8px 8px 16px #d8d8d8, -8px -8px 16px #ffffff;
 }
-
-/* variant 2 */
-/* 
-.cardTodoChecked {
-  padding: 16px 24px;
-  min-width: 100%;
-  border-radius: 8px;
-  min-height: auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 38px 1fr 38px;
-  margin-bottom: 16px;
-  margin-right: 16px;
-  background-color: #fff8d5;
-  opacity: 0.8;
-} */
 
 .cardHeader {
   display: flex;

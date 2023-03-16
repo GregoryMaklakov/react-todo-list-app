@@ -45,14 +45,14 @@ export const useTodos = () => {
     }, [editTodoId, todos]);
 
     const onSaveTodo = useCallback(
-        (newTodo) =>
+        (todo) =>
             editItemInArray({
-                item: { id: editTodoId, ...newTodo },
+                item: { id: editTodoId, ...todo },
                 list: todos,
                 setState: setTodos,
                 onCleanup: setEditTodoId,
             }),
-        [todos, setTodos, setEditTodoId]
+        [todos, setTodos, setEditTodoId, editTodoId]
     );
 
     const onCreateTodo = useCallback(

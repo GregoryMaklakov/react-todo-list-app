@@ -14,6 +14,7 @@ export const useTags = () => {
     const [deletingId, setDeletingId] = useState(null);
     const [activeId, setActiveId] = useState(null);
 
+
     const getParsedTags = useCallback(
         (tagIds = []) => {
             return tags.filter(({ id }) => tagIds.includes(id));
@@ -63,10 +64,12 @@ export const useTags = () => {
                     differencePoint: 100,
                 }).color,
             };
+
             setTags((prevState) => [...prevState, newTag]);
             return true;
         },
-        // добавили массив tags в зависимости массива колбэков в useCallback, чтобы функция onCreateNewTag была пересоздана, когда tags меняется.
+        // добавили массив tags в зависимости массива колбэков в useCallback, 
+        //чтобы функция onCreateNewTag была пересоздана, когда tags меняется.
         [setTags, tags]
     );
 

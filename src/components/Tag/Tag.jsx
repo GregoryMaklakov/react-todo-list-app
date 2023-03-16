@@ -16,6 +16,7 @@ export const Tag = ({
     onDelete,
     className,
     isEditable,
+    isDeleting,
 }) => {
     const {
         inputRef,
@@ -70,10 +71,12 @@ export const Tag = ({
         return null;
     };
 
-
     return (
         <div
-            className={clsx(styles.container, className, { [styles.active]: active })}
+            className={clsx(styles.container, className, {
+                [styles.active]: active,
+                [styles.isDeleting]: isDeleting,
+            })}
         >
             <div className={styles.inner}>
                 <ColorDot className={styles.color} color={color}></ColorDot>
@@ -98,4 +101,5 @@ Tag.propTypes = {
     onDelete: PropTypes.func,
     isEditable: PropTypes.bool,
     onSave: PropTypes.func,
+    isDeleting: PropTypes.bool,
 };

@@ -2,8 +2,8 @@ import { useCallback, useState, useMemo } from "react";
 import { editItemInArray } from "../utils/editItemInArray";
 import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
-export const useTodos = () => {
-    const [todos, setTodos] = useState([
+export const useTodos = (activeTagId) => {
+    const [todosList, setTodosList] = useState([
         {
             id: 1,
             title: "Todo 1",
@@ -26,16 +26,25 @@ export const useTodos = () => {
             tags: [3],
         },
     ]);
-
     const [editTodoId, setEditTodoId] = useState(null);
     const [deleteTodoId, setDeleteTodoId] = useState(null);
 
     // показать и скрыть done task
     const [showDone, setShowDone] = useState(true);
-    const filteredTasks = showDone ? todos : todos.filter(todo => !todo.done);
+    // const filteredTasks = showDone ? todos : todos.filter((todo) => !todo.done);
     const handleToggleShowDone = () => {
         setShowDone(!showDone);
     };
+
+    const todos = useMemo(() => {
+        if (!showDone) {
+            return todosList.filter((todo) => !todo.done)
+        }
+        if (activeTagId) {
+            return todosList.filter(({ tags }) => tags.includes(activeTagId))
+        }
+        return todosList;
+    }, [todosList, activeTagId, showDone, setShowDone, setEditTodoId])
 
     const todoEditing = useMemo(() => {
         if (editTodoId === "new") {
@@ -49,15 +58,24 @@ export const useTodos = () => {
             editItemInArray({
                 item: { id: editTodoId, ...todo },
                 list: todos,
-                setState: setTodos,
+                setState: setTodosList,
                 onCleanup: setEditTodoId,
             }),
-        [todos, setTodos, setEditTodoId, editTodoId]
+        [todos, setTodosList, setEditTodoId, editTodoId]
     );
+
+    // without useCallback
+    // const onSaveTodo = (todo) =>
+    //     editItemInArray({
+    //         item: { id: editTodoId, ...todo },
+    //         list: todos,
+    //         setState: setTodos,
+    //         onCleanup: setEditTodoId,
+    //     });
 
     const onCreateTodo = useCallback(
         (newTodo) => {
-            setTodos((prevState) => [
+            setTodosList((prevState) => [
                 ...prevState,
                 {
                     id: Date.now(),
@@ -67,7 +85,7 @@ export const useTodos = () => {
             ]);
             setEditTodoId(null);
         },
-        [setTodos]
+        [setTodosList]
     );
 
     const onDeleteTodo = useCallback(
@@ -75,43 +93,43 @@ export const useTodos = () => {
             deleteItemFromArray({
                 list: todos,
                 id: deleteTodoId,
-                setState: setTodos,
+                setState: setTodosList,
                 onCleanup: setDeleteTodoId,
             }),
-        [todos, deleteTodoId, setTodos, setDeleteTodoId]
+        [todos, deleteTodoId, setTodosList, setDeleteTodoId]
     );
 
     return {
         data: todos,
-        setData: setTodos,
+        setData: setTodosList,
         todoEditing,
         editTodoId,
         deleteTodoId,
         setDeleteTodoId,
         setEditTodoId,
         handleToggleShowDone,
-        filteredTasks,
         showDone,
+        todos,
         create: onCreateTodo,
         delete: onDeleteTodo,
         update: onSaveTodo,
     };
 };
 
-    // вернутся к этому методу фильтрации(если handleToggleShowDone не сработает)
-    // const hideDoneTodos = () => {
-    //     const copyTodos = [...todos];
-    //     const doneTodo = copyTodos.filter((todo) => !todo.done);
-    //     const unDoneTodo = copyTodos.filter((todo) => todo.done);
-    //     switch (setTodos) {
-    //         case "done":
-    //             setTodos(doneTodo)
-    //             break;
-    //         case "undone":
-    //             setTodos(!unDoneTodo)
-    //             break;
-    //         default:
-    //             setTodos(doneTodo);
-    //             break;
-    //     }
-    // };
+// вернутся к этому методу фильтрации(если handleToggleShowDone не сработает)
+// const hideDoneTodos = () => {
+//     const copyTodos = [...todos];
+//     const doneTodo = copyTodos.filter((todo) => !todo.done);
+//     const unDoneTodo = copyTodos.filter((todo) => todo.done);
+//     switch (setTodos) {
+//         case "done":
+//             setTodos(doneTodo)
+//             break;
+//         case "undone":
+//             setTodos(!unDoneTodo)
+//             break;
+//         default:
+//             setTodos(doneTodo);
+//             break;
+//     }
+// };

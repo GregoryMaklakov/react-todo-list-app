@@ -11,7 +11,7 @@
 .active {
   background-color: #efefef;
 }
-
+.isDeleting .actions,
 .active .actions,
 .container:hover .actions {
   opacity: 1;

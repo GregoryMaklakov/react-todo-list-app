@@ -9,7 +9,7 @@
   margin-right: 16px;
   border-radius: 8px;
   background: linear-gradient(145deg, #ffffe4, #e6dfc0);
-  box-shadow: 8px 8px 16px #e6dfc0, -8px -8px 16px #ffffea;
+  transition: background-color 0.2s;
 }
 
 .cardTodoChecked {
@@ -22,8 +22,10 @@
   grid-template-rows: 38px 1fr 38px;
   margin-bottom: 16px;
   margin-right: 16px;
-  background: linear-gradient(145deg, #d8d8d8, #ffffff);
-  box-shadow: 8px 8px 16px #d8d8d8, -8px -8px 16px #ffffff;
+  transition: all 0.2s ease 0s;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: inset 8px 8px 33px #e6e6e6, inset -8px -8px 33px #ffffff;
 }
 
 .cardHeader {
@@ -66,21 +68,21 @@
   font-size: 14px;
   line-height: 17px;
   color: #6a6e74;
-  margin-bottom: 16px;
   min-width: inherit;
   min-height: auto;
   display: flex;
   word-break: break-all;
+  overflow-y: scroll;
 }
 
 .textChecked {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  margin-bottom: 16px;
   color: #6a6e74;
   text-decoration-line: line-through;
   word-break: break-all;
+  overflow-y: scroll;
   opacity: 0.4;
 }
 .footer {

@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 0.5px;
+  position: relative;
+}
+.checkboxLabel {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  position: relative;
+  transition: background-color 0.2s;
+  overflow: hidden;
+  cursor: pointer;
+  margin-right: 8px;
+  border: 1px solid #c4c4c4;
+}
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.checkboxInput:checked ~ .checkboxLabel {
+  background-color: #292d32;
+  border: 1px solid #292d32;
+}
+
+.checkboxLabel::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 10px;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(40deg) scale(10);
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.checkboxInput:checked ~ .checkboxLabel::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotateZ(40deg) scale(1);
+}

@@ -13,7 +13,7 @@ import { useTodos } from "../hooks/useTodos";
 
 function App() {
   const tagsState = useTags();
-  const todosState = useTodos();
+  const todosState = useTodos(tagsState.activeId);
 
   //====================================================================
   return (
@@ -38,7 +38,8 @@ function App() {
                   color={tag.color}
                   active={tagsState.activeId === tag.id}
                   isEditable
-                  onClick={() => tagsState.setActiveId(tag.id)}
+                  isDeleting={tagsState.deletingId === tag.id}
+                  onClick={() => tagsState.toggleActiveId(tag.id)}
                   onSave={(name) => tagsState.update({ ...tag, name })}
                   onDelete={() => tagsState.setDeletingId(tag.id)}
                 >
@@ -64,7 +65,7 @@ function App() {
           </Checkbox>
         </aside>
         <div className={styles.todoList}>
-          {todosState.filteredTasks.map((todo) => {
+          {todosState.todos.map((todo) => {
             return (
               <TodoCard
                 key={todo.id}
@@ -82,12 +83,12 @@ function App() {
       </div>
 
       {/* =========================popups==========================*/}
-      {todosState.todoEditing && (
+      {!!todosState.todoEditing && (
         <PopupEdit
           title={todosState.todoEditing?.title}
           text={todosState.todoEditing?.text}
           tags={tagsState.data}
-          selectedTags={todosState?.tags}
+          selectedTags={todosState.todoEditing?.tags}
           onClose={() => todosState.setEditTodoId(null)}
           onSave={
             todosState.editTodoId === "new"

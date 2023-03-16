@@ -58,7 +58,7 @@ TodoCard.propTypes = {
     onDelete: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
     onDoneChange: PropTypes.func.isRequired,
-    done: PropTypes.bool.isRequired,
+    done: PropTypes.bool,
     tags: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number,

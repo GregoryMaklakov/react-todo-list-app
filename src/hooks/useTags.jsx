@@ -82,7 +82,7 @@ export const useTags = () => {
                 color: uniqolor.random({
                     saturation: [25, 80],
                     lightness: 80,
-                    differencePoint: 100,
+                    differencePoint: 90,
                 }).color,
             };
 

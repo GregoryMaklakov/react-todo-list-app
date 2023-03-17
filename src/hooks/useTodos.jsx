@@ -2,13 +2,14 @@ import { useCallback, useState, useMemo, useEffect } from "react";
 import { editItemInArray } from "../utils/editItemInArray";
 import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
-const TODOS_LOCAL_STORAGE = 'todosList'
+const TODOS_LOCAL_STORAGE = "todosList";
 
 export const useTodos = (activeTagId) => {
     const [todosList, setTodosList] = useState(() => {
         const storageTodos = localStorage.getItem(TODOS_LOCAL_STORAGE);
+
         if (storageTodos) {
-            return JSON.parse(storageTodos)
+            return JSON.parse(storageTodos);
         } else {
             return [
                 {
@@ -32,38 +33,38 @@ export const useTodos = (activeTagId) => {
                     done: true,
                     tags: [3],
                 },
-            ]
+            ];
         }
     });
 
     useEffect(() => {
-        localStorage.setItem(TODOS_LOCAL_STORAGE, JSON.stringify(todosList))
-    }, [todosList])
+        localStorage.setItem(TODOS_LOCAL_STORAGE, JSON.stringify(todosList));
+    }, [todosList]);
 
     const [editTodoId, setEditTodoId] = useState(null);
     const [deleteTodoId, setDeleteTodoId] = useState(null);
 
-    // показать и скрыть done task
     const [showDone, setShowDone] = useState(true);
-    // const filteredTasks = showDone ? todos : todos.filter((todo) => !todo.done);
     const handleToggleShowDone = () => {
         setShowDone(!showDone);
     };
 
     const todos = useMemo(() => {
+        let result = [...todosList];
+
         if (!showDone) {
-            return todosList.filter((todo) => !todo.done)
+            result = todosList.filter((todo) => !todo.done);
         }
         if (activeTagId) {
-            return todosList.filter(({ tags }) => tags.includes(activeTagId))
+            result = result.filter(({ tags }) => tags.includes(activeTagId));
         }
-        return todosList;
-    }, [todosList, activeTagId, showDone, setShowDone, setEditTodoId])
+        return result;
+    }, [todosList, activeTagId, showDone]);
 
     const onSaveTodo = useCallback(
         (todo) =>
             editItemInArray({
-                item: { id: editTodoId, ...todo },
+                item: { id: todo.id || editTodoId, ...todo },
                 list: todos,
                 setState: setTodosList,
                 onCleanup: setEditTodoId,
@@ -78,8 +79,6 @@ export const useTodos = (activeTagId) => {
         return todos.find(({ id }) => id === editTodoId);
     }, [editTodoId, todos]);
 
-
-
     const onDeleteTodo = useCallback(
         () =>
             deleteItemFromArray({
@@ -88,7 +87,7 @@ export const useTodos = (activeTagId) => {
                 setState: setTodosList,
                 onCleanup: setDeleteTodoId,
             }),
-        [todos, setTodosList, deleteTodoId]
+        [todos, setTodosList, deleteTodoId, setDeleteTodoId]
     );
 
     const onCreateNewTodo = useCallback(
@@ -99,9 +98,8 @@ export const useTodos = (activeTagId) => {
             };
             setTodosList((prevState) => [...prevState, newTodo]);
             setEditTodoId(null);
-
         },
-        [setTodosList]
+        [setTodosList, setEditTodoId]
     );
 
     return {

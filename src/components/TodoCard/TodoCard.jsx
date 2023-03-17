@@ -5,6 +5,7 @@ import { Button } from "../Button";
 import { ColorDot } from "../ColorDot";
 import { Checkbox } from "../Checkbox";
 
+
 export const TodoCard = ({
     text,
     title,
@@ -13,9 +14,10 @@ export const TodoCard = ({
     onEdit,
     done,
     onDoneChange,
+    className,
 }) => {
     return (
-        <article className={clsx(done ? styles.cardTodoChecked : styles.cardTodo)}>
+        <article className={clsx(done ? styles.cardTodoChecked : styles.cardTodo, className)}>
             <header className={done ? styles.cardHeaderChecked : styles.cardHeader}>
                 <h2 className={clsx(styles.title)}>{title}</h2>
                 <div className={clsx(styles.headerButtons)}>
@@ -71,3 +73,4 @@ TodoCard.propTypes = {
 TodoCard.defaultTypes = {
     tags: [],
 };
+

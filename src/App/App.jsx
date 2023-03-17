@@ -1,4 +1,6 @@
 import styles from "./App.module.css";
+import clsx from "clsx";
+
 import {
   PopupDelete,
   Button,
@@ -10,10 +12,15 @@ import {
 } from "../components";
 import { useTags } from "../hooks/useTags";
 import { useTodos } from "../hooks/useTodos";
+import { useState } from 'react';
+
+import { Transition } from 'react-transition-group';
 
 function App() {
   const tagsState = useTags();
   const todosState = useTodos(tagsState.activeId);
+
+  const [loaderVisible, setLoaderVisible] = useState(false);
 
   //====================================================================
   return (
@@ -80,9 +87,22 @@ function App() {
             );
           })}
         </div>
+
       </div>
 
+      {/* <button onClick={() => setLoaderVisible(!loaderVisible)}>
+        {loaderVisible ? 'hide' : 'show'}
+      </button>
+      <div className={styles.wrap}>
+        <Transition
+          in={loaderVisible}
+          timeout={2000}>
+          {state => <div className={clsx(styles.circle, `${state})`} />}
+        </Transition>
+      </div> */}
+
       {/* =========================popups==========================*/}
+
       {!!todosState.todoEditing && (
         <PopupEdit
           title={todosState.todoEditing?.title}

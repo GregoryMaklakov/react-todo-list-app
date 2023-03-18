@@ -19,6 +19,7 @@
   npm install --save prop-types
 ```
 
+![Xnip2023-03-18_13-01-08](https://user-images.githubusercontent.com/105268946/226105078-e405fd12-3a21-4f6b-acf4-9818d99e71cc.jpg)
 
 
 

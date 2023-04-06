@@ -79,11 +79,14 @@ export const useTags = () => {
             const newTag = {
                 id: Date.now(),
                 name,
-                color: uniqolor.random({
-                    saturation: [25, 80],
-                    lightness: 80,
-                    differencePoint: 90,
-                }).color,
+                // color: uniqolor.random({
+                //     saturation: [22, 30],
+                //     lightness: 54,
+                //     differencePoint: 100,
+                // }).color,
+                color: uniqolor.random({ format: 'hsl' })
+                    // { color: "hsl(89, 55%, 60%)", isLight: true }
+                    .color,
             };
 
             setTags((prevState) => [...prevState, newTag]);

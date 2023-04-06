@@ -10,6 +10,7 @@
   border-radius: 8px;
   background: linear-gradient(145deg, #ffffe4, #e6dfc0);
   transition: background-color 0.2s;
+  min-height: 200px;
 }
 
 .cardTodoChecked {

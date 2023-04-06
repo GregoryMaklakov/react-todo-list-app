@@ -45,6 +45,8 @@ button,
 textarea {
   font-size: inherit;
   box-shadow: inherit;
+  -webkit-box-shadow: 0 0 0 1px #c4c4c4;
+  box-shadow: 0 0 0 1px #c4c4c4;
 }
 button {
   cursor: pointer;

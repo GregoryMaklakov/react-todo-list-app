@@ -6,7 +6,7 @@
   border-radius: 8px;
   background-color: inherit;
   transition: all 0.2s ease 0s;
-  box-shadow: 0 0 0 1px #c4c4c4;
+  border: 1px solid #c4c4c4;
 
   font-weight: 400;
   font-size: 14px;
@@ -29,20 +29,16 @@
   height: 34px;
 }
 .input:hover {
-  box-shadow: 0 0 0 1px #8a8e97;
+  border: 1px solid #8a8e97;
 }
 
-/* .input:focus {
-  box-shadow: 0 0 0 2px #c4c4c4;
-} */
-
 .input:active {
-  box-shadow: 0 0 0 1px #292d32;
+  border: 1px solid #292d32;
 }
 
 .input:disabled {
   background-color: #efefef;
-  box-shadow: 0 0 0 1px#EFEFEF;
+  border: 1px solid #efefef;
   color: #c4c4c4;
   cursor: no-drop;
 }

@@ -1,0 +1,8 @@
+:root {
+  --color-bg-grey: #b2b1b2;
+  --color-bg-black: rgba(0, 0, 0, 0.7);
+  --color-green: #a8ed50;
+  --color-font-grey-dark: #6a6e74;
+  --color-font-main: #ffffff;
+  --color-font-sec: rgba(255, 255, 255, 0.7);
+}

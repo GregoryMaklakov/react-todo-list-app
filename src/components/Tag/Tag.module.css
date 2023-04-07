@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .container {
   display: inline-flex;
   align-items: center;
@@ -9,7 +11,7 @@
 }
 
 .active {
-  background-color: #efefef;
+  background-color: var(--color-font-grey-dark);
 }
 .isDeleting .actions,
 .active .actions,
@@ -25,7 +27,7 @@
 
 .text {
   font-size: 14px;
-  color: #292d32;
+  color: var(--color-font-main);
   text-transform: lowercase;
 }
 
@@ -50,15 +52,19 @@
   height: 32px;
   min-width: 96px;
   bottom: 0;
-  background-color: #ffff;
+  background-color: rgba(255, 255, 255);
 }
 
 .actionButton {
   width: 24px;
   height: 24px;
-  fill: #6a6e74;
+  fill: var(--color-green);
   z-index: 10;
 }
+.actionButton :hover {
+  fill: var(--color-font-main);
+}
+
 .actionBtn:not(:last-child) {
   margin-right: 8px;
 }

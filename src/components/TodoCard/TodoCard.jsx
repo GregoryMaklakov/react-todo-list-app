@@ -18,7 +18,7 @@ export const TodoCard = ({
 }) => {
     return (
         <article className={clsx(done ? styles.cardTodoChecked : styles.cardTodo, className)}>
-            <header className={done ? styles.cardHeaderChecked : styles.cardHeader}>
+            <header className={styles.cardHeader}>
                 <h2 className={clsx(styles.title)}>{title}</h2>
                 <div className={clsx(styles.headerButtons)}>
                     <Button
@@ -35,7 +35,7 @@ export const TodoCard = ({
                     />
                 </div>
             </header>
-            <p className={done ? styles.textChecked : styles.text}>{text}</p>
+            <p className={styles.text}>{text}</p>
             <div className={clsx(styles.footer)}>
                 <div className={clsx(styles.colorWrraper)}>
                     {tags.map(({ color, id }) => (

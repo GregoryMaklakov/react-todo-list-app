@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-
+import video from '../assets/video/05.mp4'
 import {
   PopupDelete,
   Button,
@@ -19,6 +19,12 @@ function App() {
   //====================================================================
   return (
     <div className={styles.container}>
+      <div className={styles.videoContainer}>
+        <video className={styles.video} autoPlay preload='true' playsInline loop controls={false} muted onCanPlay={(e) => e.target.play()}>
+          <source src={video} type="video/mp4" />
+        </video>
+      </div>
+
       <header className={styles.header}>
         <h1 className={styles.title}>to do list</h1>
         <Button
@@ -49,21 +55,22 @@ function App() {
               );
             })}
           </div>
-          <EditableButton
-            className={styles.editableButton}
-            onSave={tagsState.create}
-            icon="IconAdd"
-            fluid
-          >
-            add new value
-          </EditableButton>
-
-          <Checkbox
-            checked={!todosState.showDone}
-            onChange={todosState.handleToggleShowDone}
-          >
-            Hide Done Task
-          </Checkbox>
+          <div className={styles.asideAction}>
+            <EditableButton
+              className={styles.editableButton}
+              onSave={tagsState.create}
+              icon="IconAdd"
+              fluid
+            >
+              add new value
+            </EditableButton>
+            <Checkbox
+              checked={!todosState.showDone}
+              onChange={todosState.handleToggleShowDone}
+            >
+              Hide Done Task
+            </Checkbox>
+          </div>
         </aside>
         <div className={styles.todoList}>
           {todosState.todos.map((todo) => {

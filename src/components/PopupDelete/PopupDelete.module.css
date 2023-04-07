@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .container {
   background: #ffffff;
   box-shadow: 0px 2px 15px rgba(169, 173, 187, 0.15);
@@ -18,7 +20,7 @@
   font-size: 12px;
   line-height: 14px;
   text-align: center;
-  color: #292d32;
+  color: var(--color-font-main);
   margin-bottom: 32px;
 }
 .popupButtons {

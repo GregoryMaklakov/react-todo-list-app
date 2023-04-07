@@ -1,7 +1,6 @@
+@import "../../vars.css";
+
 .button {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   transition: all 0.2s ease 0s;
 }
 .button:disabled {
@@ -9,10 +8,10 @@
 }
 .icon {
   transition: all 0.2s ease 0s;
-  fill: #6a6e74;
+  fill: var(--color-green);
 }
 .icon:hover {
-  fill: #292d32;
+  fill: var(--color-font-grey-dark);
 }
 
 /* PRIMARY */
@@ -20,23 +19,23 @@
   padding: 9px 16px;
   width: 73px;
   height: 32px;
-  background: #6a6e74;
+  background: var(--color-font-grey-dark);
   border-radius: 8px;
 
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-  color: #ffffff;
+  color: var(--color-font-main);
 }
 .variant-primary:hover {
-  background: #292d32;
+  background: var(--color-bg-black);
 }
 .variant-primary:focus {
-  background: #6a6e74;
+  background: var(--color-font-grey-dark);
   box-shadow: 0 0 0 2px #d7dcff;
 }
 .variant-primary:active {
-  background: #6a6e74;
+  background: var(--color-font-grey-dark);
   box-shadow: 0 0 0 2px #a2abe9;
 }
 .variant-primary:disabled {
@@ -48,7 +47,7 @@
   padding: 9px 16px;
   width: 73px;
   height: 32px;
-  background: #6a6e74;
+  background: var(--color-font-grey-dark);
   border-radius: 8px;
 
   font-weight: 500;
@@ -74,32 +73,32 @@
 /* DACHSED */
 .variant-dashed {
   padding: 9px 16px 9px 12px;
-  border: 1px dashed #6a6e74;
+  border: 1px dashed var(--color-font-main);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  color: #6a6e74;
+  color: var(--color-font-main);
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-  color: #6a6e74;
   transition: all 0.2s ease 0s;
 }
 .variant-dashed svg {
   width: 14px;
   height: 14px;
   margin-right: 8px;
-  fill: #6a6e74;
+  fill: var(--color-font-main);
 }
 .variant-dashed:hover,
 .variant-dashed:hover svg {
-  color: #292d32;
-  fill: #292d32;
+  transition: all 0.2s ease 0s;
+  color: var(--color-green);
+  fill: var(--color-green);
 }
 .variant-dashed:hover {
-  border: 1px dashed #292d32;
+  border: 1px dashed var(--color-green);
 }
 .variant-dashed:focus {
   box-shadow: 0 0 0 2px #d7dcff;
@@ -109,7 +108,7 @@
   color: #c4c4c4;
 }
 .variant-dashed:disabled svg {
-  fill: c4c4c4;
+  fill: #c4c4c4;
 }
 
 /* TEXT */
@@ -117,12 +116,12 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  color: #6a6e74;
+  color: var(--color-font-grey-dark);
   border-radius: 8px;
   padding: 3px 2px;
 }
 .variant-text:hover {
-  color: #292d32;
+  color: var(--color-bg-black);
 }
 .variant-text:focus {
   box-shadow: 0 0 0 2px #d7dcff;
@@ -135,10 +134,10 @@
 .variant-icon {
   box-shadow: 0 0 0 2px transparent;
   border-radius: 8px;
-  fill: #6a6e74;
+  fill: var(--color-bg-black);
 }
 .variant-icon:hover {
-  fill: #292d32;
+  fill: var(--color-green);
 }
 .variant-icon:focus {
   box-shadow: 0 0 0 2px #d7dcff;

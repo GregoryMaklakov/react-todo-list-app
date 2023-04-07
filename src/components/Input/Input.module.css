@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .input {
   display: flex;
   flex-direction: row;
@@ -12,7 +14,7 @@
   font-size: 14px;
   font-size: 16px;
   line-height: 17px;
-  color: #292d32;
+  color: var(--color-bg-black);
   min-width: 100%;
 }
 
@@ -27,6 +29,7 @@
 }
 .small {
   height: 34px;
+  background-color: var(--color-font-main);
 }
 .input:hover {
   border: 1px solid #8a8e97;

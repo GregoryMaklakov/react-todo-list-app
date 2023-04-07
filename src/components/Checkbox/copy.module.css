@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .container {
   display: flex;
   align-items: center;
@@ -6,11 +8,12 @@
   padding: 0 0.5px;
   position: relative;
 }
+
 .checkboxLabel {
   display: block;
   width: 20px;
   height: 20px;
-  background-color: #ffffff;
+  background-color: inherit;
   border-radius: 4px;
   position: relative;
   transition: background-color 0.2s;
@@ -19,13 +22,23 @@
   margin-right: 8px;
   border: 1px solid #c4c4c4;
 }
+
+.container:hover .checkboxLabel {
+  border: 1px solid var(--color-green);
+}
+
 .checkboxInput {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
+
+.checkboxText {
+  color: var(--color-font-main);
+}
+
 .checkboxInput:checked ~ .checkboxLabel {
-  background-color: #292d32;
+  background-color: var(--color-bg-black);
   border: 1px solid #292d32;
 }
 

@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .textarea {
   display: flex;
   flex-direction: row;
@@ -11,7 +13,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #292d32;
+  color: var(--color-font-main);
   min-width: 100%;
   resize: none;
 }

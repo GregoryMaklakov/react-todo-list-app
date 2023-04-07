@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import styles from "./copy.module.css";
-import { Icon } from "../Icon";
 
 
 export const Checkbox = ({ className, children, checked, onChange }) => {

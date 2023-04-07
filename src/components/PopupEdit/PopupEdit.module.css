@@ -15,7 +15,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  color: #535559;
+  color: var(--color-font-grey-dark);
   margin-bottom: 8px;
 }
 
@@ -37,4 +37,8 @@
 
 .tagList:not(:last-child) {
   margin-right: 24px;
+}
+
+.tag div > span {
+  color: var(--color-bg-black);
 }

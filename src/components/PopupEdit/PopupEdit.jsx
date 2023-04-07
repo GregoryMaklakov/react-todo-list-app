@@ -89,7 +89,7 @@ export const PopupEdit = ({
             <div className={styles.tagList}>
                 {tags.map((tag) => {
                     return (
-                        <Tag
+                        <Tag className={styles.tag}
                             onClick={() => onSelectedTagsChange(tag.id)}
                             key={tag.id}
                             active={state.selectedTags.includes(tag.id)}

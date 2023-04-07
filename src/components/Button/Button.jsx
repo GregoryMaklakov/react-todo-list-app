@@ -38,12 +38,12 @@ export const Button = ({
 };
 
 Button.propTypes = {
-    variant: PropTypes.oneOf(["primary", "text", "icon", "danger", "dashed"]),
+    variant: PropTypes.oneOf(["primary", "text", "icon", "danger", "dashed", "mobile"]),
     className: PropTypes.string,
     children: PropTypes.string,
     onClick: PropTypes.func,
     disebled: PropTypes.bool,
-    size: PropTypes.oneOf(["small", "medium", "large"]),
+    size: PropTypes.oneOf(["small", "medium", "large", "mobile"]),
     icon: PropTypes.oneOf(ICON_TYPES),
     fluid: PropTypes.bool,
 };

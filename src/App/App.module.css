@@ -48,7 +48,6 @@ body {
   left: 0;
   top: 0;
   right: 0;
-  border-radius: 5px;
   backdrop-filter: blur(15px);
 }
 
@@ -85,7 +84,7 @@ body {
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   background: rgba(0, 0, 0, 0.7);
-  border-radius: 5px;
+
   position: fixed;
   top: 104px;
   left: 0;
@@ -129,7 +128,9 @@ body {
   padding-right: 8px;
   padding-left: 8px;
 }
-
+.mobileBtnAdd {
+  display: none;
+}
 @media screen and (min-width: 1441px) {
   .todoList {
     grid-template-columns: repeat(3, 1fr);
@@ -159,23 +160,21 @@ body {
     padding-top: 0;
   }
   .header {
-    height: 80px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background-color: var(--color-bg-grey);
+    display: none;
   }
   .aside {
     flex-direction: column;
     margin-right: 0px;
     position: fixed;
-    top: 80px;
+    top: 0;
     left: 0;
     right: 0;
     width: 100%;
-    background-color: var(--color-bg-grey);
+    border-radius: 0px 0px 5px 5px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.7);
+
     z-index: 3;
     padding-bottom: 16px;
     padding-left: 14px;
@@ -194,21 +193,26 @@ body {
     overflow-x: scroll;
     overflow-y: hidden;
     background-color: var(--color-bg-black);
-    border: 1px solid #c3c3c3;
+    border: 1px solid var(--color-font-grey-dark);
     border-radius: 5px;
-    margin-bottom: 18px;
+    margin-bottom: 4px;
   }
 
   .tag:not(:last-child) {
     margin-bottom: 0px;
   }
   .todoList {
-    margin-top: 320px;
+    margin-top: 244px;
     padding-right: 0;
     padding-left: 0;
   }
   .editableButton {
     margin-top: 8px;
     margin-bottom: 16px;
+  }
+  .mobileBtnAdd {
+    bottom: 16px;
+    right: 16px;
+    background-color: var(--color-green);
   }
 }

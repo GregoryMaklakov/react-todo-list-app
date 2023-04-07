@@ -8,10 +8,9 @@
   border-radius: 8px;
   background-color: inherit;
   transition: all 0.2s ease 0s;
-  border: 1px solid #c4c4c4;
+  border: 1px solid var(--color-bg-black);
 
   font-weight: 400;
-  font-size: 14px;
   font-size: 16px;
   line-height: 17px;
   color: var(--color-bg-black);
@@ -22,7 +21,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 17px;
-  color: #c4c4c4;
+  color: var(--color-font-grey-dark);
 }
 .large {
   height: 40px;

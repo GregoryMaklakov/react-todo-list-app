@@ -88,7 +88,12 @@ function App() {
             );
           })}
         </div>
-
+        <Button className={styles.mobileBtnAdd}
+          variant="mobile"
+          icon="IconAdd"
+          size="mobile"
+          onClick={() => todosState.setEditTodoId("new")}
+        />
       </div>
 
       {/* =========================popups==========================*/}

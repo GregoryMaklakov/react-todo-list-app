@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .container {
   position: fixed;
   width: 100vw;
@@ -8,12 +10,11 @@
   align-items: center;
   justify-content: center;
   z-index: 100;
-  background: rgba(43, 40, 34, 0.33);
+  background: rgba(43, 40, 34, 0.66);
 }
 .card {
-  background: #ffffff;
-  box-shadow: 0px 2px 15px rgba(169, 173, 187, 0.15);
-  border-radius: 4px;
+  background: var(--color-yellow);
+  border-radius: 5px;
   width: 320px;
   min-height: 134px;
   padding: 16px 16px 24px 16px;

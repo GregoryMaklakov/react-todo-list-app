@@ -1,7 +1,7 @@
 @import "../../vars.css";
 
 .container {
-  background: #ffffff;
+  background: var(--color-yellow);
   box-shadow: 0px 2px 15px rgba(169, 173, 187, 0.15);
   border-radius: 4px;
   width: 320px;
@@ -14,13 +14,20 @@
   width: 16px;
   height: 16px;
   align-self: end;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background-color: inherit;
+}
+.popupClose:hover {
+  background-color: var(--color-font-sec);
+  fill: var(---color-bg-black);
 }
 .popupTitle {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   line-height: 14px;
   text-align: center;
-  color: var(--color-font-main);
+  color: var(--color-font-grey-dark);
   margin-bottom: 32px;
 }
 .popupButtons {

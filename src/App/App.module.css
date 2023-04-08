@@ -48,7 +48,20 @@ body {
   left: 0;
   top: 0;
   right: 0;
-  backdrop-filter: blur(15px);
+}
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #4e4f51, rgba(178, 170, 170, 0));
+}
+
+.header button {
+  z-index: 101;
 }
 
 .title {
@@ -56,6 +69,7 @@ body {
   font-size: 32px;
   line-height: 38px;
   color: var(--color-font-main);
+  z-index: 101;
 }
 
 .hero {
@@ -193,7 +207,7 @@ body {
     overflow-x: scroll;
     overflow-y: hidden;
     background-color: var(--color-bg-black);
-    border: 1px solid var(--color-font-grey-dark);
+    border: 1px solid #2a2b2d;
     border-radius: 5px;
     margin-bottom: 4px;
   }
@@ -213,6 +227,5 @@ body {
   .mobileBtnAdd {
     bottom: 16px;
     right: 16px;
-    background-color: var(--color-green);
   }
 }

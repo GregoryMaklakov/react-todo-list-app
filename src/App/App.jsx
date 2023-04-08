@@ -26,7 +26,7 @@ function App() {
       </div>
 
       <header className={styles.header}>
-        <h1 className={styles.title}>to do list</h1>
+        <h1 className={styles.title}>To do list</h1>
         <Button
           variant="icon"
           icon="IconAdd"

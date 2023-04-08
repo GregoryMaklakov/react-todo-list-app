@@ -151,19 +151,23 @@
   border-radius: 50%;
   display: none;
   position: fixed;
-
-  padding: 6px;
+  padding: 12px;
+  background-color: var(--color-green);
+  transition: scale 0.3s ease 0s;
 }
+.variant-mobile :active {
+  transform: scale(1.1);
+}
+
 @media screen and (max-width: 768px) {
   .variant-mobile {
-    display: none;
+    display: block;
   }
 }
 /* SIZE */
 .size-small {
   width: 16px;
   height: 16px;
-  padding: 8px;
 }
 .size-medium {
   width: 22px;
@@ -179,6 +183,7 @@
   width: 52px;
   height: 52px;
 }
+
 /* FLUID */
 .fluid {
   min-width: 100%;

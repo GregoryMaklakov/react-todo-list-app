@@ -115,6 +115,7 @@ body {
   margin-bottom: 32px;
   max-height: 65vh;
   overflow-y: scroll;
+  list-style: none;
 }
 
 .tag:not(:last-child) {

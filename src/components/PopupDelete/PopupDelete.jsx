@@ -1,4 +1,4 @@
-import clsx from "clsx";
+
 import PropTypes from "prop-types";
 import styles from "./PopupDelete.module.css";
 import { Popup } from "../Popup/";

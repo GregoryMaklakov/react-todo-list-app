@@ -58,11 +58,13 @@ export const useTags = () => {
 
     const onDeleteTag = useCallback(
         () =>
-            deleteItemFromArray({
-                list: tags,
-                id: deletingId,
-                setState: setTags,
-                onCleanup: setDeletingId,
+            setTimeout(() => {
+                deleteItemFromArray({
+                    list: tags,
+                    id: deletingId,
+                    setState: setTags,
+                    onCleanup: setDeletingId,
+                }, 400)
             }),
         [tags, deletingId, setTags, setDeletingId]
     );

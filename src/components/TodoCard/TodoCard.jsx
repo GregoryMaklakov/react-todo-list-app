@@ -4,7 +4,8 @@ import styles from "./TodoCard.module.css";
 import { Button } from "../Button";
 import { ColorDot } from "../ColorDot";
 import { Checkbox } from "../Checkbox";
-
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export const TodoCard = ({
     text,
@@ -16,8 +17,42 @@ export const TodoCard = ({
     onDoneChange,
     className,
 }) => {
+
+    const [isDelayed, setIsDelayed] = useState(false);
+    const animatedCard = {
+        hidden: { opacity: 0, backdropFilter: "none" },
+        show: { opacity: 1, backdropFilter: "blur(15px)", transition: { staggerChildren: 0.4, duration: 1.5 } },
+        delayed: {
+            backdropFilter: "blur(15px)",
+            opacity: 1,
+            transition: {
+                duration: 2,
+                ease: "easeInOut"
+            },
+        },
+        transition: {
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+        },
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsDelayed(true);
+        }, 300);
+    }, []);
+
     return (
-        <article className={clsx(done ? styles.cardTodoChecked : styles.cardTodo, className)}>
+        <motion.div
+            className={clsx(
+                done ? styles.cardTodoChecked : styles.cardTodo,
+                className
+            )}
+            animate={isDelayed ? "delayed" : "show"}
+            variants={animatedCard}
+            initial="hidden"
+        >
             <header className={styles.cardHeader}>
                 <h2 className={clsx(styles.title)}>{title}</h2>
                 <div className={clsx(styles.headerButtons)}>
@@ -50,7 +85,7 @@ export const TodoCard = ({
                     Done
                 </Checkbox>
             </div>
-        </article>
+        </motion.div>
     );
 };
 
@@ -73,4 +108,3 @@ TodoCard.propTypes = {
 TodoCard.defaultTypes = {
     tags: [],
 };
-

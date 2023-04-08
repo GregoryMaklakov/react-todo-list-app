@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import video from '../assets/video/05.mp4'
+import video from "../assets/video/05.mp4";
 import {
   PopupDelete,
   Button,
@@ -11,16 +11,48 @@ import {
 } from "../components";
 import { useTags } from "../hooks/useTags";
 import { useTodos } from "../hooks/useTodos";
-
+import { motion } from "framer-motion";
 
 function App() {
   const tagsState = useTags();
   const todosState = useTodos(tagsState.activeId);
-  //====================================================================
+
+  // ?========================= ANIMATION ======================================
+
+  const animatedTodo = {
+    hidden: {
+      opacity: 0,
+      delay: 0.3,
+      z: 0,
+    },
+    show: {
+      opacity: 1,
+      z: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const animatedTag = {
+    hidden: { opacity: 0, x: "-100%" },
+    show: { opacity: 1, x: 0, transition: { staggerChildren: 0.2 } },
+
+  };
+
+  // ?========================= ANIMATION ======================================
+
   return (
     <div className={styles.container}>
       <div className={styles.videoContainer}>
-        <video className={styles.video} autoPlay preload='true' playsInline loop controls={false} muted onCanPlay={(e) => e.target.play()}>
+        <video
+          className={styles.video}
+          autoPlay
+          preload="true"
+          playsInline
+          loop
+          controls={false}
+          muted
+          onCanPlay={(e) => e.target.play()}
+        >
           <source src={video} type="video/mp4" />
         </video>
       </div>
@@ -34,27 +66,36 @@ function App() {
           onClick={() => todosState.setEditTodoId("new")}
         />
       </header>
+
       <div className={styles.hero}>
         <aside className={styles.aside}>
-          <div className={styles.tagsList}>
+          <motion.ul
+            className={styles.tagsList}
+            variants={animatedTag}
+            initial="hidden"
+            animate="show"
+          >
             {tagsState.data.map((tag) => {
               return (
-                <Tag
-                  className={styles.tag}
-                  key={tag.id}
-                  color={tag.color}
-                  active={tagsState.activeId === tag.id}
-                  isEditable
-                  isDeleting={tagsState.deletingId === tag.id}
-                  onClick={() => tagsState.toggleActiveId(tag.id)}
-                  onSave={(name) => tagsState.update({ ...tag, name })}
-                  onDelete={() => tagsState.setDeletingId(tag.id)}
-                >
-                  {tag.name}
-                </Tag>
+                <motion.li key={tag.id} variants={animatedTag}>
+                  <Tag
+                    className={styles.tag}
+                    key={tag.id}
+                    color={tag.color}
+                    active={tagsState.activeId === tag.id}
+                    isEditable
+                    isDeleting={tagsState.deletingId === tag.id}
+                    onClick={() => tagsState.toggleActiveId(tag.id)}
+                    onSave={(name) => tagsState.update({ ...tag, name })}
+                    onDelete={() => tagsState.setDeletingId(tag.id)}
+                  >
+                    {tag.name}
+                  </Tag>
+                </motion.li>
               );
             })}
-          </div>
+          </motion.ul>
+
           <div className={styles.asideAction}>
             <EditableButton
               className={styles.editableButton}
@@ -72,23 +113,33 @@ function App() {
             </Checkbox>
           </div>
         </aside>
-        <div className={styles.todoList}>
+
+        <motion.ul
+          className={styles.todoList}
+          variants={animatedTodo}
+          initial="hidden"
+          animate="show"
+          exitBeforeEnter={true}
+        >
           {todosState.todos.map((todo) => {
             return (
-              <TodoCard
-                key={todo.id}
-                done={todo.done}
-                text={todo.text}
-                title={todo.title}
-                onDelete={() => todosState.setDeleteTodoId(todo.id)}
-                onDoneChange={(done) => todosState.update({ ...todo, done })}
-                onEdit={() => todosState.setEditTodoId(todo.id)}
-                tags={tagsState.getParsedTags(todo.tags)}
-              ></TodoCard>
+              <motion.li key={todo.id} variants={animatedTodo}>
+                <TodoCard
+                  key={todo.id}
+                  done={todo.done}
+                  text={todo.text}
+                  title={todo.title}
+                  onDelete={() => todosState.setDeleteTodoId(todo.id)}
+                  onDoneChange={(done) => todosState.update({ ...todo, done })}
+                  onEdit={() => todosState.setEditTodoId(todo.id)}
+                  tags={tagsState.getParsedTags(todo.tags)}
+                ></TodoCard>
+              </motion.li>
             );
           })}
-        </div>
-        <Button className={styles.mobileBtnAdd}
+        </motion.ul>
+        <Button
+          className={styles.mobileBtnAdd}
           variant="mobile"
           icon="IconAdd"
           size="mobile"

@@ -11,7 +11,6 @@ import {
 } from "../components";
 import { useTags } from "../hooks/useTags";
 import { useTodos } from "../hooks/useTodos";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
@@ -78,8 +77,6 @@ function App() {
 
       <div className={styles.hero}>
         <aside className={styles.aside}>
-
-
           <motion.ul
             className={styles.tagsList}
             variants={animatedTag}
@@ -109,7 +106,6 @@ function App() {
               })}
             </AnimatePresence>
           </motion.ul>
-
           <div className={styles.asideAction}>
             <EditableButton
               className={styles.editableButton}
@@ -138,13 +134,16 @@ function App() {
           <AnimatePresence positionTransition>
             {todosState.todos.map((todo) => {
               return (
+
                 <motion.li
                   key={todo.id}
+                  layout
                   variants={animatedTodo}
                   exit={animatedTodo.exit}
                   positionTransition={{ ease: "easeInOut", duration: 0.8 }}
                 >
                   <TodoCard
+
                     key={todo.id}
                     done={todo.done}
                     text={todo.text}
@@ -157,10 +156,12 @@ function App() {
                     tags={tagsState.getParsedTags(todo.tags)}
                   ></TodoCard>
                 </motion.li>
+
               );
             })}
           </AnimatePresence>
         </motion.ul>
+
         <Button
           className={styles.mobileBtnAdd}
           variant="mobile"

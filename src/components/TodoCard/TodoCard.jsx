@@ -5,7 +5,6 @@ import { Button } from "../Button";
 import { ColorDot } from "../ColorDot";
 import { Checkbox } from "../Checkbox";
 import { useState, useEffect } from "react";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export const TodoCard = ({

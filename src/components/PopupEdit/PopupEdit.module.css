@@ -4,6 +4,11 @@
   margin-left: 16px;
   margin-right: 16px;
 }
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 24px 12px 24px 12px;
+  }
+}
 .popupHeader {
   display: flex;
   align-items: center;

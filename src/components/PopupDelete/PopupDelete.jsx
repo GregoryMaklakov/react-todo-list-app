@@ -23,7 +23,7 @@ export const PopupDelete = ({ onDelete, title, onClose }) => {
                     Delete
                 </Button>
             </div>
-        </Popup>
+        </Popup >
     );
 };
 

@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 38px 1fr 38px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
   margin-right: 16px;
   background: linear-gradient(
     0deg,

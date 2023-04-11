@@ -3,6 +3,9 @@
 body {
   background: var(--color-bg-grey);
 }
+.no-scroll {
+  overflow: hidden;
+}
 .container {
   min-height: 100vh;
   padding-right: 16px;
@@ -177,13 +180,8 @@ body {
   }
   .header {
     display: none;
+    position: fixed;
   }
-  /*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
-*/
 
   .aside {
     -webkit-box-orient: vertical;
@@ -232,6 +230,8 @@ body {
     margin-top: 244px;
     padding-right: 0;
     padding-left: 0;
+    z-index: 1;
+    position: relative;
   }
   .editableButton {
     margin-top: 8px;

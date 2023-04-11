@@ -112,4 +112,5 @@ TodoCard.propTypes = {
 
 TodoCard.defaultTypes = {
     tags: [],
+    done: false,
 };

@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 110;
   background: rgba(43, 40, 34, 0.66);
 }
 .card {

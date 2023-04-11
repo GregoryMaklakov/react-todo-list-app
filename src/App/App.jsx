@@ -19,6 +19,27 @@ function App() {
 
   // ?========================= ANIMATION ======================================
 
+  // const animatedTodo = {
+  //   hidden: {
+  //     opacity: 0,
+  //     delay: 0.3,
+  //     z: 0,
+  //   },
+  //   show: {
+  //     opacity: 1,
+  //     z: 1,
+  //     transition: { staggerChildren: 0.2 },
+  //   },
+  //   exit: {
+  //     opacity: 0,
+  //     delay: 0.3,
+  //     transition: {
+  //       ease: "easeInOut",
+  //       duration: 0.4,
+  //     },
+  //   },
+  // };
+
   const animatedTodo = {
     hidden: {
       opacity: 0,
@@ -126,7 +147,7 @@ function App() {
 
         <motion.ul
           className={styles.todoList}
-          variants={animatedTodo}
+          // variants={animatedTodo}
           initial="hidden"
           animate="show"
           exitBeforeEnter={true}
@@ -138,7 +159,7 @@ function App() {
                 <motion.li
                   key={todo.id}
                   layout
-                  variants={animatedTodo}
+                  // variants={animatedTodo}
                   exit={animatedTodo.exit}
                   positionTransition={{ ease: "easeInOut", duration: 0.8 }}
                 >

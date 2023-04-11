@@ -162,6 +162,7 @@
 @media screen and (max-width: 768px) {
   .variant-mobile {
     display: block;
+    z-index: 101;
   }
 }
 /* SIZE */

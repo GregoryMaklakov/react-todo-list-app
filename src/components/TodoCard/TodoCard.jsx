@@ -21,13 +21,19 @@ export const TodoCard = ({
     const [isDelayed, setIsDelayed] = useState(false);
     const animatedCard = {
         hidden: { opacity: 0, backdropFilter: "none" },
-        show: { opacity: 1, backdropFilter: "blur(15px)", transition: { staggerChildren: 0.4, duration: 1.5 } },
+        show: {
+            opacity: 1,
+            backdropFilter: "blur(15px)",
+            WebkitBackdropFilter: "blur(15px)",
+            transition: { staggerChildren: 0.4, duration: 1.5 },
+        },
         delayed: {
             backdropFilter: "blur(15px)",
+            WebkitBackdropFilter: "blur(15px)",
             opacity: 1,
             transition: {
                 duration: 2,
-                ease: "easeInOut"
+                ease: "easeInOut",
             },
         },
         transition: {

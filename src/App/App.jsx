@@ -11,14 +11,7 @@ import {
 } from "../components";
 import { useTags } from "../hooks/useTags";
 import { useTodos } from "../hooks/useTodos";
-import {
-  AnimatePresence,
-  motion,
-  Reorder,
-  animate,
-  MotionValue,
-  useMotionValue,
-} from "framer-motion";
+import { AnimatePresence, motion, Reorder } from "framer-motion";
 import useMedia from "use-media";
 
 function App() {
@@ -123,38 +116,40 @@ function App() {
                 })}
               </AnimatePresence>
             </Reorder.Group>
-          ) : <motion.ul
-            className={styles.tagsList}
-            variants={animatedTag}
-            initial="hidden"
-            animate="show"
-          >
-            <AnimatePresence>
-              {tagsState.data.map((tag) => {
-                return (
-                  <motion.li
-                    key={tag.id}
-                    variants={animatedTag}
-                    exit={animatedTag.exit}
-                  >
-                    <Tag
-                      className={styles.tag}
+          ) : (
+            <motion.ul
+              className={styles.tagsList}
+              variants={animatedTag}
+              initial="hidden"
+              animate="show"
+            >
+              <AnimatePresence>
+                {tagsState.data.map((tag) => {
+                  return (
+                    <motion.li
                       key={tag.id}
-                      color={tag.color}
-                      active={tagsState.activeId === tag.id}
-                      isEditable
-                      isDeleting={tagsState.deletingId === tag.id}
-                      onClick={() => tagsState.toggleActiveId(tag.id)}
-                      onSave={(name) => tagsState.update({ ...tag, name })}
-                      onDelete={() => tagsState.setDeletingId(tag.id)}
+                      variants={animatedTag}
+                      exit={animatedTag.exit}
                     >
-                      {tag.name}
-                    </Tag>
-                  </motion.li>
-                );
-              })}
-            </AnimatePresence>
-          </motion.ul>}
+                      <Tag
+                        className={styles.tag}
+                        key={tag.id}
+                        color={tag.color}
+                        active={tagsState.activeId === tag.id}
+                        isEditable
+                        isDeleting={tagsState.deletingId === tag.id}
+                        onClick={() => tagsState.toggleActiveId(tag.id)}
+                        onSave={(name) => tagsState.update({ ...tag, name })}
+                        onDelete={() => tagsState.setDeletingId(tag.id)}
+                      >
+                        {tag.name}
+                      </Tag>
+                    </motion.li>
+                  );
+                })}
+              </AnimatePresence>
+            </motion.ul>
+          )}
 
           {/* <motion.ul
             className={styles.tagsList}

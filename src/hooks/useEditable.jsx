@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 
-export const useEditable = ({ cleanAfterSuccess, onSave }) => {
+export const useEditable = ({ cleanAfterSuccess, onSave, errorMessage }) => {
     const inputRef = useRef(null);
     const [isInputActive, setIsInputActive] = useState(false);
     const [value, setValue] = useState("");
+    const [error, setError] = useState(""); // добавляем состояние для ошибки
+
 
     const handelSave = async () => {
         if (onSave) {
@@ -17,6 +19,12 @@ export const useEditable = ({ cleanAfterSuccess, onSave }) => {
             }
             if (ok && cleanAfterSuccess) {
                 setValue("");
+            }
+            if (!ok && errorMessage) {
+                setError(errorMessage);
+
+            } else {
+                setError(""); // очищаем ошибку
             }
         }
     };
@@ -34,5 +42,7 @@ export const useEditable = ({ cleanAfterSuccess, onSave }) => {
         onChange: setValue,
         value,
         setIsInputActive,
+        errorMessage: error, // передаем ошибку в компонент
+
     };
 };

@@ -7,7 +7,8 @@ import { Button } from "../Button/";
 export const PopupDelete = ({ onDelete, title, onClose }) => {
 
     return (
-        <Popup className={styles.container}>
+        <Popup className={styles.container}
+        >
             <Button
                 className={styles.popupClose}
                 onClick={onClose}

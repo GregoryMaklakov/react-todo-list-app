@@ -2,6 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import uniqolor from "uniqolor";
 import { editItemInArray } from "../utils/editItemInArray";
 import { deleteItemFromArray } from "../utils/deleteItemFromArray";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const TAGS_STORAGE_KEY = "tags";
@@ -77,7 +78,7 @@ export const useTags = () => {
                 return null;
             }
             if (tags.some((tag) => tag.name === name)) {
-                alert(`Tag "${name}" already exists!`);
+                toast.error(`Name "${name}"is already taken!`);
                 return null;
             }
             const newTag = {
@@ -95,7 +96,6 @@ export const useTags = () => {
         [setTags, tags]
     );
 
-
     return {
         data: tags,
         setData: setTags,
@@ -107,7 +107,6 @@ export const useTags = () => {
         create: onCreateNewTag,
         delete: onDeleteTag,
         update: onSaveTag,
-
         toggleActiveId,
     };
 };

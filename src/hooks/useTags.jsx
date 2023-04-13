@@ -3,6 +3,7 @@ import uniqolor from "uniqolor";
 import { editItemInArray } from "../utils/editItemInArray";
 import { deleteItemFromArray } from "../utils/deleteItemFromArray";
 
+
 const TAGS_STORAGE_KEY = "tags";
 
 export const useTags = () => {
@@ -69,6 +70,7 @@ export const useTags = () => {
         [tags, deletingId, setTags, setDeletingId]
     );
 
+
     const onCreateNewTag = useCallback(
         async (name) => {
             if (name.length <= 0) {
@@ -81,13 +83,7 @@ export const useTags = () => {
             const newTag = {
                 id: Date.now(),
                 name,
-                // color: uniqolor.random({
-                //     saturation: [22, 30],
-                //     lightness: 54,
-                //     differencePoint: 100,
-                // }).color,
                 color: uniqolor.random({ format: 'hsl' })
-                    // { color: "hsl(89, 55%, 60%)", isLight: true }
                     .color,
             };
 
@@ -98,6 +94,7 @@ export const useTags = () => {
         //чтобы функция onCreateNewTag была пересоздана, когда tags меняется.
         [setTags, tags]
     );
+
 
     return {
         data: tags,
@@ -114,3 +111,4 @@ export const useTags = () => {
         toggleActiveId,
     };
 };
+

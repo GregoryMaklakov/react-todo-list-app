@@ -5,13 +5,16 @@ import { ICON_TYPES } from "../Icon/Icon";
 import { Input } from "../Input";
 import { useEditable } from "../../hooks/useEditable";
 
-export const EditableButton = ({ className, children, icon, onSave }) => {
+
+export const EditableButton = ({ className, children, icon, onSave, errorMessage }) => {
     const { inputRef, isInputActive, handelSave, onChange, value, setIsInputActive } = useEditable({
         onSave,
         cleanAfterSuccess: true,
     });
+
     return (
         <div className={clsx(className)}>
+
             {isInputActive ? (
                 <Input
                     minLength={2}

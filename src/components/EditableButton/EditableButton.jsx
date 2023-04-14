@@ -4,9 +4,7 @@ import { Button } from "../Button";
 import { ICON_TYPES } from "../Icon/Icon";
 import { Input } from "../Input";
 import { useEditable } from "../../hooks/useEditable";
-import styles from './EditableButton.module.css';
-
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -20,7 +18,7 @@ export const EditableButton = ({ className, children, icon, onSave, }) => {
         <div className={clsx(className)}>
             <ToastContainer
                 position="bottom-left"
-                autoClose={3000}
+                autoClose={2500}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick

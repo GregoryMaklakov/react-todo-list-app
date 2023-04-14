@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import uniqolor from "uniqolor";
 import { editItemInArray } from "../utils/editItemInArray";
 import { deleteItemFromArray } from "../utils/deleteItemFromArray";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 const TAGS_STORAGE_KEY = "tags";
@@ -86,9 +86,13 @@ export const useTags = () => {
                 name,
                 color: uniqolor.random({ format: 'hsl' })
                     .color,
+
             };
 
             setTags((prevState) => [...prevState, newTag]);
+            if (window.innerWidth <= 768) {
+                toast.success(`Tag "${name}" created successfully!`);
+            }
             return true;
         },
         // добавили массив tags в зависимости массива колбэков в useCallback, 

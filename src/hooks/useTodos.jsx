@@ -8,6 +8,7 @@ export const useTodos = (activeTagId) => {
     const [todosList, setTodosList] = useState(() => {
         const storageTodos = localStorage.getItem(TODOS_LOCAL_STORAGE);
 
+
         if (storageTodos) {
             return JSON.parse(storageTodos);
         } else {

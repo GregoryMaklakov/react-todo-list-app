@@ -91,7 +91,7 @@
   min-width: inherit;
   min-height: auto;
   display: flex;
-  word-break: break-all;
+  /* word-break: break-all; */
   overflow-y: scroll;
 }
 

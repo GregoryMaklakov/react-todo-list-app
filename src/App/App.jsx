@@ -12,7 +12,7 @@ import {
 import { useTags } from "../hooks/useTags";
 import { useTodos } from "../hooks/useTodos";
 import { AnimatePresence, motion, Reorder } from "framer-motion";
-import useMedia from "use-media";
+import { useMediaQuery } from 'react-responsive';
 
 function App() {
   const tagsState = useTags();
@@ -46,8 +46,7 @@ function App() {
     exit: { opacity: 0, x: "-100%", transition: { duration: 0.4 } },
   };
   //
-  const isWide = useMedia({ minWidth: "768px" });
-
+  const isDesktop = useMediaQuery({ minWidth: 768 });
   // ?========================= ANIMATION ======================================
 
   return (
@@ -79,7 +78,8 @@ function App() {
 
       <div className={styles.hero}>
         <aside className={styles.aside}>
-          {isWide ? (
+
+          {isDesktop ? (
             <Reorder.Group
               className={styles.tagsList}
               variants={animatedTag}
@@ -149,7 +149,8 @@ function App() {
                 })}
               </AnimatePresence>
             </motion.ul>
-          )}
+          )
+          }
 
           {/* <motion.ul
             className={styles.tagsList}
